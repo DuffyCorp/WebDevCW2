@@ -1,0 +1,20 @@
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <div class="text-center py-3">
+    {{^user}}
+            <a id="login" href="/login" class="btn btn-primary">Sign in</a>
+        {{/user}}
+        {{#user}}
+            <a id="logout" href="/logout" class="btn btn-primary">Sign out</a>
+        {{/user}}
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+    <a href="http://localhost:3000/"> Jack Duffy</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

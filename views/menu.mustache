@@ -1,0 +1,44 @@
+<html>
+    <head>
+        {{>header}}
+    </head>
+    <body>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-light">
+        <h1 class="mb-3">{{title}}</h1>
+        <h4 class="mb-3">Guest book app from lab work.</h4>
+    </div>
+    <!-- Jumbotron -->
+        {{#entries}}
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h4>{{dishName}}</h4>
+                </div>
+                <p class="card-text">
+                    Price: £{{dishPrice}} <br>
+                    Category: {{dishCategory}}
+                </p>
+                <div class="card-footer">
+                {{#dishAllergies}}
+                    <p>May contain: {{dishAllergies}}</p>
+                {{/dishAllergies}}
+                {{^dishAllergies}}
+                    <p>This dish contains no alergies</p>
+                {{/dishAllergies}}
+                    <p>is this dish gluten free: {{glutenFree}}</p>
+                    <p>Is this dish available: {{available}}</p>
+                </div> 
+            </div>
+        </div>
+        {{/entries}}
+        {{^entries}}
+            No entries yet.
+        {{/entries}}
+        <div>
+        </div>
+    </body>
+    <footer>
+        {{>footer}}
+    </footer>
+</html>
