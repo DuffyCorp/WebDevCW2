@@ -10,18 +10,22 @@
     </div>
     <!-- Jumbotron -->
         {{#entries}}
+        {{#menus}}
+        <h1>{{menuName}}</h1>
+        {{#category}}
+        <h2>{{catName}}</h2>
+        {{#dishes}}
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h4>{{dishName}}</h4>
+                    <h4>{{name}}</h4>
                 </div>
                 <p class="card-text">
-                    Price: £{{dishPrice}} <br>
-                    Category: {{dishCategory}}
+                    Price: £{{price}} <br>
                 </p>
                 <div class="card-footer">
                 {{#dishAllergies}}
-                    <p>May contain: {{dishAllergies}}</p>
+                    <p>May contain: {{allergies}}</p>
                 {{/dishAllergies}}
                 {{^dishAllergies}}
                     <p>This dish contains no alergies</p>
@@ -31,6 +35,9 @@
                 </div> 
             </div>
         </div>
+        {{/dishes}}
+        {{/category}}
+        {{/menus}}
         {{/entries}}
         {{^entries}}
             No entries yet.

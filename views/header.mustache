@@ -23,17 +23,25 @@
             <li class="nav-item active">
               <a class="nav-link" aria-current="page" href="http://localhost:3000/">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
-            </li>
+            {{#entries}}
+            {{#menus}}
+              <li class="nav-item">
+                <a class="nav-link" href="/menu/{{menuName}}">{{menuName}}</a>
+              </li>
+              {{/menus}}
+            {{/entries}}
           {{/user}}
           {{#user}}
             <li class="nav-item active">
               <a class="nav-link" aria-current="page" href="http://localhost:3000/loggedIn">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/aboutAdmin">About</a>
-            </li>
+            {{#entries}}
+              {{#menus}}
+              <li class="nav-item">
+                <a class="nav-link" href="/menu/admin/{{menuName}}">{{menuName}}</a>
+              </li>
+              {{/menus}}
+            {{/entries}}
             <li class="nav-item">
               <a class="nav-link" href="/admin">Admin</a>
             </li>

@@ -10,13 +10,15 @@
     </div>
     <!-- Jumbotron -->
         {{#entries}}
+        {{#menus}}
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h4>Menu: <a href="/menu/{{menu}}">{{menu}}</a></h4>
+                    <h4>Menu: <a href="/menu/{{menuName}}">{{menuName}}</a></h4>
                 </div>
             </div>
         </div>
+        {{/menus}}
         {{/entries}}
         {{^entries}}
             No entries yet.

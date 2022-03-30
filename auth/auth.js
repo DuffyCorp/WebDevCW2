@@ -42,6 +42,6 @@ exports.verify = function (req, res, next) {
     next();
   } catch (e) {
     //if an error occured return request unauthorized error
-    res.status(401).send();
+    res.redirect("/");
   }
 };

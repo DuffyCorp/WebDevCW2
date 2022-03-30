@@ -12,91 +12,161 @@ class GuestBook {
 
   init() {
     this.db.insert({
-      dishName: "Pizza",
-      dishPrice: 12.99,
-      dishCategory: "Mains",
-      dishAllergies: "Nuts",
-      vegetarian: "No",
-      glutenFree: "No",
-      menu: "Dinner",
-      available: "yes",
+      menus: [
+        {
+          menuName: "Dinner",
+          category: [
+            {
+              catName: "Mains",
+              dishes: [
+                {
+                  name: "Pizza",
+                  price: 12.99,
+                  vegetarian: true,
+                  glutenFree: false,
+                  available: true,
+                },
+                {
+                  name: "Steak",
+                  price: 18.99,
+                  vegetarian: false,
+                  glutenFree: true,
+                  available: true,
+                },
+              ],
+            },
+            {
+              catName: "Starters",
+              dishes: [
+                {
+                  name: "Lentil soup",
+                  price: 6.99,
+                  vegetarian: true,
+                  glutenFree: false,
+                  available: true,
+                },
+                {
+                  name: "Pate",
+                  price: 5.99,
+                  vegetarian: false,
+                  glutenFree: true,
+                  available: true,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          menuName: "Lunch",
+          category: [
+            {
+              catName: "Mains",
+              dishes: [
+                {
+                  name: "Burger",
+                  price: 8.99,
+                  vegetarian: false,
+                  glutenFree: false,
+                  available: true,
+                },
+                {
+                  name: "Pasta",
+                  price: 7.99,
+                  vegetarian: true,
+                  glutenFree: false,
+                  available: true,
+                },
+              ],
+            },
+            {
+              catName: "Starters",
+              dishes: [
+                {
+                  name: "Cheese toastie",
+                  price: 5.99,
+                  vegetarian: true,
+                  glutenFree: false,
+                  available: true,
+                },
+                {
+                  name: "Tomato soup",
+                  price: 5.99,
+                  vegetarian: true,
+                  glutenFree: false,
+                  available: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
     });
-    //for later debugging
-    console.log("db entry Pizza inserted");
-    this.db.insert({
-      dishName: "Lentil soup",
-      dishPrice: 6.99,
-      dishCategory: "Starters",
-      vegetarian: "Yes",
-      glutenFree: "Yes",
-      menu: "Lunch",
-      available: "yes",
-    });
-    //for later debugging
-    console.log("db entry Lentil Soup inserted");
-    this.db.insert({
-      dishName: "Steak",
-      dishPrice: 24.99,
-      dishCategory: "Main",
-      vegetarian: "No",
-      glutenFree: "Yes",
-      menu: "Dinner",
-      available: "yes",
-    });
-    //for later debugging
-    console.log("db entry Steak inserted");
-    this.db.insert({
-      dishName: "Steak Pie",
-      dishPrice: 8.99,
-      dishCategory: "Main",
-      vegetarian: "No",
-      glutenFree: "No",
-      menu: "Lunch",
-      available: "yes",
-    });
-    //for later debugging
-    console.log("db entry Steak Pie inserted");
   }
 
   //a function to return all entries from the database
-  getAllentries() {
+  getAllMenus() {
     //return a Promise object, which can be resolved or rejected
     return new Promise((resolve, reject) => {
       //use the find() function of the database to get the data,
       //error first callback function, err for error, entries for data
-      this.db.find({}, function (err, entries) {
+      this.db.find({}, function (err, menus) {
         //if error occurs reject Promise
         if (err) {
           reject(err);
           //if no error resolve the promise & return the data
         } else {
-          resolve(entries);
+          resolve(menus);
           //to see what the returned data looks like
-          console.log("function all() returns: ", entries);
+          console.log("function all() returns: ", menus);
         }
       });
     });
   }
 
-  getEntriesByUser(menuName) {
+  getMenusByName(searchName) {
+    console.log(searchName)
     return new Promise((resolve, reject) => {
-        this.db.find({ 'menu': menuName }, function(err, entries) {
+      this.db.find({'menus.menuName': searchName }, function (err, menus) {
         if (err) {
-            reject(err);
+          reject(err);
         } else {
-            resolve(entries);
-        console.log('getEntriesByUser returns: ', entries);
-    }
-})
-})
-}
+          resolve(menus);
+          console.log("getMenuByName returns: ", menus);
+        }
+      });
+    });
+  }
 
-  addEntry(author, subject, contents) {
+  getMenus(menuName) {
+    return new Promise((resolve, reject) => {
+      this.db.find({ menu: menuName }, function (err, menus) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(menus);
+          console.log("getEntriesByUser returns: ", menus);
+        }
+      });
+    });
+  }
+
+  addEntry(
+    dishName,
+    dishPrice,
+    dishCategory,
+    vegetarian,
+    glutenFree,
+    menu,
+    available
+  ) {
     var entry = {
-      author: author,
-      subject: subject,
-      contents: contents,
-      published: new Date().toISOString().split("T")[0],
+      dishName: dishName,
+      dishPrice: dishPrice,
+      dishCategory: dishCategory,
+      vegetarian: vegetarian,
+      glutenFree: glutenFree,
+      menu: menu,
+      available: available,
     };
     console.log("entry created", entry);
     this.db.insert(entry, function (err, doc) {

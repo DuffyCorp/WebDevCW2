@@ -23,7 +23,7 @@ exports.server_error = function (req, res) {
 };
 
 exports.landing_page = function (req, res) {
-  db.getAllentries()
+  db.getAllMenus()
     .then((list) => {
       res.render("index", {
         title: "Guest Book",
@@ -37,7 +37,7 @@ exports.landing_page = function (req, res) {
 };
 
 exports.loggedIn_landing = function (req, res) {
-  db.getAllentries()
+  db.getAllMenus()
     .then((list) => {
       res.render("index", {
         title: "Guest Book",
@@ -51,7 +51,7 @@ exports.loggedIn_landing = function (req, res) {
 };
 
 exports.admin_page = function (req, res) {
-  db.getAllentries()
+  db.getAllMenus()
     .then((list) => {
       res.render("adminPage", {
         title: "Admin Page",
@@ -65,13 +65,13 @@ exports.admin_page = function (req, res) {
 };
 
 exports.logged_show_user_entries = function (req, res) {
-  let user = req.params.menu;
-  db.getEntriesByUser(user)
-    .then((entries) => {
+  let menu = req.params.name;
+  db.getMenusByName(menu)
+    .then((list) => {
       res.render("menu", {
-        title: "Guest Book",
+        title: menu,
         user: "user",
-        entries: entries,
+        entries: list,
       });
     })
     .catch((err) => {
@@ -81,12 +81,12 @@ exports.logged_show_user_entries = function (req, res) {
 };
 
 exports.show_user_entries = function (req, res) {
-  let user = req.params.menu;
-  db.getEntriesByUser(user)
-    .then((entries) => {
+  let menu = req.params.name;
+  db.getMenusByName(menu)
+    .then((list) => {
       res.render("menu", {
-        title: "Guest Book",
-        entries: entries,
+        title: menu,
+        entries: list,
       });
     })
     .catch((err) => {
@@ -98,16 +98,17 @@ exports.show_user_entries = function (req, res) {
 exports.new_entries = function (req, res) {
   res.render("newEntry", {
     title: "Guest Book",
+    user: "user"
   });
 };
 
 exports.post_new_entry = function (req, res) {
   console.log("processing post-new_entry controller");
-  if (!req.body.author) {
-    response.status(400).send("entries must have an author.");
+  if (!req.body.dishName) {
+    response.status(400).send("entries must have an dishName.");
     return;
   }
-  db.addEntry(req.body.author, req.body.subject, req.body.contents);
+  db.addEntry(req.body.dishName, req.body.dishPrice, req.body.dishCategory, req.body.dishAllergies, req.body.vegetarian, req.body.glutenFree, req.body.menu, req.body.available );
   res.redirect("/admin");
 };
 

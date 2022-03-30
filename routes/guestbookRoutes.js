@@ -10,7 +10,8 @@ router.get('/about', controller.about);
 
 router.get('/aboutAdmin', controller.aboutAdmin);
 
-router.get('/menu/:menu', controller.show_user_entries);
+router.get('/menu/:name', controller.show_user_entries);
+router.get('/menu/admin/:name', controller.logged_show_user_entries);
 
 //For new pages
 router.get('/new',verify, controller.show_new_entries)
