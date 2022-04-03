@@ -9,8 +9,9 @@
         <h4 class="mb-3">Guest book app from lab work.</h4>
     </div>
     <!-- Jumbotron -->
+    <div class="container">
         {{#entries}}
-        {{#menus}}
+        {{^user}}
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
@@ -18,13 +19,21 @@
                 </div>
             </div>
         </div>
-        {{/menus}}
+        {{/user}}
+        {{#user}}
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h4>Menu: <a href="/menu/admin/{{menuName}}">{{menuName}}</a></h4>
+                </div>
+            </div>
+        </div>
+        {{/user}}
         {{/entries}}
         {{^entries}}
             No entries yet.
         {{/entries}}
-        <div>
-        </div>
+    </div>
     </body>
     <footer>
         {{>footer}}

@@ -11,10 +11,99 @@ class GuestBook {
   }
 
   init() {
+    // this.db.insert({
+    //   restaurant_name: "Jacks",
+    //   menus: [
+    //     {
+    //       menuName: "Dinner",
+    //       category: [
+    //         {
+    //           catName: "Mains",
+    //           dishes: [
+    //             {
+    //               name: "Pizza",
+    //               price: 12.99,
+    //               vegetarian: true,
+    //               glutenFree: false,
+    //               available: true,
+    //             },
+    //             {
+    //               name: "Steak",
+    //               price: 18.99,
+    //               vegetarian: false,
+    //               glutenFree: true,
+    //               available: true,
+    //             },
+    //           ],
+    //         },
+    //         {
+    //           catName: "Starters",
+    //           dishes: [
+    //             {
+    //               name: "Lentil soup",
+    //               price: 6.99,
+    //               vegetarian: true,
+    //               glutenFree: false,
+    //               available: true,
+    //             },
+    //             {
+    //               name: "Pate",
+    //               price: 5.99,
+    //               vegetarian: false,
+    //               glutenFree: true,
+    //               available: true,
+    //             },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       menuName: "Lunch",
+    //       category: [
+    //         {
+    //           catName: "Mains",
+    //           dishes: [
+    //             {
+    //               name: "Burger",
+    //               price: 8.99,
+    //               vegetarian: false,
+    //               glutenFree: false,
+    //               available: true,
+    //             },
+    //             {
+    //               name: "Pasta",
+    //               price: 7.99,
+    //               vegetarian: true,
+    //               glutenFree: false,
+    //               available: true,
+    //             },
+    //           ],
+    //         },
+    //         {
+    //           catName: "Starters",
+    //           dishes: [
+    //             {
+    //               name: "Cheese toastie",
+    //               price: 5.99,
+    //               vegetarian: true,
+    //               glutenFree: false,
+    //               available: true,
+    //             },
+    //             {
+    //               name: "Tomato soup",
+    //               price: 5.99,
+    //               vegetarian: true,
+    //               glutenFree: false,
+    //               available: true,
+    //             },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // });
     this.db.insert({
-      menus: [
-        {
-          menuName: "Dinner",
+      menuName: "Dinner",
           category: [
             {
               catName: "Mains",
@@ -55,9 +144,10 @@ class GuestBook {
               ],
             },
           ],
-        },
-        {
-          menuName: "Lunch",
+    });
+    console.log("Added Dinner Menu")
+    this.db.insert({
+      menuName: "Lunch",
           category: [
             {
               catName: "Mains",
@@ -98,9 +188,8 @@ class GuestBook {
               ],
             },
           ],
-        },
-      ],
     });
+    console.log("Added Lunch Menu")
   }
 
   //a function to return all entries from the database
@@ -126,7 +215,7 @@ class GuestBook {
   getMenusByName(searchName) {
     console.log(searchName)
     return new Promise((resolve, reject) => {
-      this.db.find({'menus.menuName': searchName }, function (err, menus) {
+      this.db.find({menuName: searchName }, function (err, menus) {
         if (err) {
           reject(err);
         } else {
@@ -170,6 +259,39 @@ class GuestBook {
     };
     console.log("entry created", entry);
     this.db.insert(entry, function (err, doc) {
+      if (err) {
+        console.log("Error inserting document", subject);
+      } else {
+        console.log("document inserted into the database", doc);
+      }
+    });
+  }
+
+  addMenu(newMenuName) {
+    console.log(newMenuName)
+    var entry = {
+      menuName: newMenuName,
+      category: []
+    };
+    console.log("entry created", entry);
+    this.db.insert(entry, function (err, doc) {
+      if (err) {
+        console.log("Error inserting document", subject);
+      } else {
+        console.log("document inserted into the database", doc);
+      }
+    });
+  }
+
+  addCat(selectMenuName, newCatName) {
+    console.log(selectMenuName)
+    console.log(newCatName)
+    var entry = {
+      catName: newCatName,
+      dishes: []
+    };
+    console.log("entry created", entry);
+    this.db.update({ menuName: selectMenuName }, { $addToSet: { category: entry } }, {},  function (err, doc) {
       if (err) {
         console.log("Error inserting document", subject);
       } else {

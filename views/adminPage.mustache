@@ -7,24 +7,26 @@
     <div class="p-5 text-center bg-light">
         <h1 class="mb-3">{{title}}</h1>
         <h4 class="mb-3">Admin page for resaurant web app</h4>
-        <a class="btn btn-primary" href="/new" role="button">Add dish</a>
+        <a class="btn btn-primary" href="/newMenu" role="button">Add Menu</a>
+        <a class="btn btn-primary" href="/newCat" role="button">Add Category to menu</a>
+        <a class="btn btn-primary" href="/newDish" role="button">Add dish</a>
     </div>
     <!-- Jumbotron -->
+    <div class="container">
         {{#entries}}
-        {{#menus}}
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h4>Menu: <a href="/menu/{{name}}">{{name}}</a></h4>
+                    <h4>Menu: <a href="/menu/admin/{{menuName}}">{{menuName}}</a></h4>
                 </div>
             </div>
         </div>
-        {{/menus}}
         {{/entries}}
         {{^entries}}
             No entries yet.
         {{/entries}}
         <div>
+        </div>
         </div>
     </body>
     <footer>

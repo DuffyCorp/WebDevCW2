@@ -26,8 +26,9 @@ exports.landing_page = function (req, res) {
   db.getAllMenus()
     .then((list) => {
       res.render("index", {
-        title: "Guest Book",
+        title: "Restaurant webApp",
         entries: list,
+        home: "active",
       });
       console.log("promise resolved");
     })
@@ -40,7 +41,8 @@ exports.loggedIn_landing = function (req, res) {
   db.getAllMenus()
     .then((list) => {
       res.render("index", {
-        title: "Guest Book",
+        title: "Restaurant webApp",
+        home: "active",
         user: "user",
         entries: list,
       });
@@ -55,6 +57,7 @@ exports.admin_page = function (req, res) {
     .then((list) => {
       res.render("adminPage", {
         title: "Admin Page",
+        admin: "active",
         user: "user",
         entries: list,
       });
@@ -66,13 +69,17 @@ exports.admin_page = function (req, res) {
 
 exports.logged_show_user_entries = function (req, res) {
   let menu = req.params.name;
+  db.getAllMenus().then(list => { 
   db.getMenusByName(menu)
-    .then((list) => {
+    .then((menuList) => {
       res.render("menu", {
         title: menu,
+        menu: "active",
         user: "user",
-        entries: list,
+        menus: menuList,
+        entries: list
       });
+    })
     })
     .catch((err) => {
       console.log("Error: ");
@@ -82,12 +89,16 @@ exports.logged_show_user_entries = function (req, res) {
 
 exports.show_user_entries = function (req, res) {
   let menu = req.params.name;
+  db.getAllMenus().then(list => { 
   db.getMenusByName(menu)
-    .then((list) => {
+    .then((menuList) => {
       res.render("menu", {
         title: menu,
-        entries: list,
+        menu: "active",
+        menus: menuList,
+        entries: list
       });
+    })
     })
     .catch((err) => {
       console.log("Error: ");
@@ -96,10 +107,19 @@ exports.show_user_entries = function (req, res) {
 };
 
 exports.new_entries = function (req, res) {
-  res.render("newEntry", {
-    title: "Guest Book",
-    user: "user"
-  });
+db.getAllMenus()
+    .then((list) => {
+      res.render("newDish", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
 };
 
 exports.post_new_entry = function (req, res) {
@@ -109,6 +129,17 @@ exports.post_new_entry = function (req, res) {
     return;
   }
   db.addEntry(req.body.dishName, req.body.dishPrice, req.body.dishCategory, req.body.dishAllergies, req.body.vegetarian, req.body.glutenFree, req.body.menu, req.body.available );
+  res.redirect("/admin");
+};
+
+exports.post_new_menu = function (req, res) {
+  console.log(req.body.newMenuName)
+  console.log("processing post-new_menu controller");
+  if (!req.body.newMenuName) {
+    response.status(400).send("menus must have a name!.");
+    return;
+  }
+  db.addMenu(req.body.newMenuName);
   res.redirect("/admin");
 };
 
@@ -135,7 +166,14 @@ exports.post_new_user = function (req, res) {
 };
 
 exports.show_login_page = function (req, res) {
-  res.render("user/login");
+  db.getAllMenus()
+  .then((list) => {
+    res.render("user/login", {
+      title: "Restaurant webApp",
+      home: "active",
+      entries: list,
+    });
+  });
 };
 
 exports.handle_login = function (req, res) {
@@ -148,8 +186,60 @@ exports.logout = function (req, res) {
 };
 
 exports.show_new_entries = function (req, res) {
-  res.render("newEntry", {
-    title: "Guest Book",
-    user: "user",
-  });
+  db.getAllMenus()
+    .then((list) => {
+      res.render("newDish", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.show_new_menu = function (req, res) {
+  db.getAllMenus()
+    .then((list) => {
+      res.render("newMenu", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.show_new_cat = function (req, res) {
+  db.getAllMenus()
+    .then((list) => {
+      res.render("newCat", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_new_cat = function (req, res) {
+  console.log(req.body.menuName, req.body.newCatName)
+  console.log("processing post-new_cat controller");
+  if (!req.body.newCatName) {
+    response.status(400).send("Category must have a name!.");
+    return;
+  }
+  db.addCat(req.body.menuName, req.body.newCatName);
+  res.redirect("/admin");
 };
