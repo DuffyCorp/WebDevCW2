@@ -1,6 +1,6 @@
 const nedb = require("nedb");
 
-class GuestBook {
+class Restaurant {
   constructor(dbFilePath) {
     if (dbFilePath) {
       this.db = new nedb({ filename: dbFilePath, autoload: true });
@@ -11,97 +11,6 @@ class GuestBook {
   }
 
   init() {
-    // this.db.insert({
-    //   restaurant_name: "Jacks",
-    //   menus: [
-    //     {
-    //       menuName: "Dinner",
-    //       category: [
-    //         {
-    //           catName: "Mains",
-    //           dishes: [
-    //             {
-    //               name: "Pizza",
-    //               price: 12.99,
-    //               vegetarian: true,
-    //               glutenFree: false,
-    //               available: true,
-    //             },
-    //             {
-    //               name: "Steak",
-    //               price: 18.99,
-    //               vegetarian: false,
-    //               glutenFree: true,
-    //               available: true,
-    //             },
-    //           ],
-    //         },
-    //         {
-    //           catName: "Starters",
-    //           dishes: [
-    //             {
-    //               name: "Lentil soup",
-    //               price: 6.99,
-    //               vegetarian: true,
-    //               glutenFree: false,
-    //               available: true,
-    //             },
-    //             {
-    //               name: "Pate",
-    //               price: 5.99,
-    //               vegetarian: false,
-    //               glutenFree: true,
-    //               available: true,
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuName: "Lunch",
-    //       category: [
-    //         {
-    //           catName: "Mains",
-    //           dishes: [
-    //             {
-    //               name: "Burger",
-    //               price: 8.99,
-    //               vegetarian: false,
-    //               glutenFree: false,
-    //               available: true,
-    //             },
-    //             {
-    //               name: "Pasta",
-    //               price: 7.99,
-    //               vegetarian: true,
-    //               glutenFree: false,
-    //               available: true,
-    //             },
-    //           ],
-    //         },
-    //         {
-    //           catName: "Starters",
-    //           dishes: [
-    //             {
-    //               name: "Cheese toastie",
-    //               price: 5.99,
-    //               vegetarian: true,
-    //               glutenFree: false,
-    //               available: true,
-    //             },
-    //             {
-    //               name: "Tomato soup",
-    //               price: 5.99,
-    //               vegetarian: true,
-    //               glutenFree: false,
-    //               available: true,
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // });
     this.db.insert({
       menuName: "Dinner",
           category: [
@@ -226,47 +135,6 @@ class GuestBook {
     });
   }
 
-  getMenus(menuName) {
-    return new Promise((resolve, reject) => {
-      this.db.find({ menu: menuName }, function (err, menus) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(menus);
-          console.log("getEntriesByUser returns: ", menus);
-        }
-      });
-    });
-  }
-
-  addEntry(
-    dishName,
-    dishPrice,
-    dishCategory,
-    vegetarian,
-    glutenFree,
-    menu,
-    available
-  ) {
-    var entry = {
-      dishName: dishName,
-      dishPrice: dishPrice,
-      dishCategory: dishCategory,
-      vegetarian: vegetarian,
-      glutenFree: glutenFree,
-      menu: menu,
-      available: available,
-    };
-    console.log("entry created", entry);
-    this.db.insert(entry, function (err, doc) {
-      if (err) {
-        console.log("Error inserting document", subject);
-      } else {
-        console.log("document inserted into the database", doc);
-      }
-    });
-  }
-
   addMenu(newMenuName) {
     console.log(newMenuName)
     var entry = {
@@ -300,7 +168,27 @@ class GuestBook {
     });
   }
 
+  addDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable) {
+    console.log(selectMenuName)
+    console.log(dishCatName)
+    var entry = {
+      name: dishName,
+      price: dishPrice,
+      vegetarian: dishVegetarian,
+      glutenFree: dishGlutenFree,
+      available: dishAvailable,
+    };
+    console.log("entry created", entry);
+    this.db.update($and [{menuName: selectMenuName}, {catName: dishCatName}], { $addToSet: { dishes: entry } }, {},  function (err, doc) {
+      if (err) {
+        console.log("Error inserting document", subject);
+      } else {
+        console.log("document inserted into the database", doc);
+      }
+    });
+  }
+
   //End of class
 }
 
-module.exports = GuestBook;
+module.exports = Restaurant;

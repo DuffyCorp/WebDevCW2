@@ -10,8 +10,8 @@ app.use(cookieParser())
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 
-const router = require('./routes/guestbookRoutes');
-const controller = require('./controllers/guestbookController')
+const router = require('./routes/restaurantRoutes');
+const controller = require('./controllers/restaurantController')
 const path = require('path');
 const public = path.join(__dirname,'public');
 

@@ -15,10 +15,12 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="menuName">Choose a category:</label>
-                <select type="text" class="form-control" name="menuName" id="menuName">
+                <label for="dishCategory">Choose a category:</label>
+                <select type="text" class="form-control" name="dishCategory" id="dishCategory">
                 {{#entries}}
+                    {{#category}}
                     <option value="{{catName}}">{{catName}}</option>
+                    {{/category}}
                 {{/entries}}
                 </select>
             </div>
@@ -29,10 +31,6 @@
             <div class="form-group">
                 <label for="dishPrice">New dish price</label>
                 <input type="text" class="form-control" id="dishPrice" name="dishPrice" placeholder="Enter a dish price" required>
-            </div>
-            <div class="form-group">
-                <label for="dishAllergies">New dish allergies</label>
-                <input type="text" class="form-control" id="dishAllergies" name="dishAllergies" placeholder="Enter a dish Allergies" required>
             </div>
             <div class="form-group">
                 <input type="checkbox" id="vegetarian" name="vegetarian" value="true">

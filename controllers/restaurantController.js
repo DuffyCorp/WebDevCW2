@@ -1,6 +1,6 @@
-const guestbookDAO = require("../models/guestbookModel.js");
+const restaurantDAO = require("../models/restaurantModel.js");
 const userDao = require("../models/userModel.js");
-const db = new guestbookDAO();
+const db = new restaurantDAO();
 db.init();
 
 exports.about = function (req, res) {
@@ -128,7 +128,7 @@ exports.post_new_entry = function (req, res) {
     response.status(400).send("entries must have an dishName.");
     return;
   }
-  db.addEntry(req.body.dishName, req.body.dishPrice, req.body.dishCategory, req.body.dishAllergies, req.body.vegetarian, req.body.glutenFree, req.body.menu, req.body.available );
+  db.addEntry(req.body.dishName, req.body.dishPrice, req.body.dishCategory, req.body.dishAllergies, req.body.vegetarian, req.body.glutenFree, req.body.menuName, req.body.available );
   res.redirect("/admin");
 };
 
@@ -241,5 +241,32 @@ exports.post_new_cat = function (req, res) {
     return;
   }
   db.addCat(req.body.menuName, req.body.newCatName);
+  res.redirect("/admin");
+};
+
+exports.show_new_dish = function (req, res) {
+  db.getAllMenus()
+    .then((list) => {
+      res.render("newDish", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_new_dish = function (req, res) {
+  console.log(req.body.menuName, req.body.dishCategory)
+  console.log("processing post-new_dish controller");
+  if (!req.body.dishCategory) {
+    response.status(400).send("Category must have a name!.");
+    return;
+  }
+  db.addDish(req.body.menuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.vegetarian, req.body.glutenFree, req.body.available);
   res.redirect("/admin");
 };

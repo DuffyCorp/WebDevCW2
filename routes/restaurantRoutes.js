@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const controller = require('../controllers/guestbookController.js');
+const controller = require('../controllers/restaurantController.js');
 const {login} = require('../auth/auth')
 const {verify} = require('../auth/auth')
 
@@ -24,8 +24,8 @@ router.get('/newCat',verify, controller.show_new_cat)
 router.post('/newCat',verify, controller.post_new_cat);
 
 //For new Dishes
-router.get('/newDish',verify, controller.show_new_entries)
-router.post('/newDish',verify, controller.post_new_entry);
+router.get('/newDish',verify, controller.show_new_dish)
+router.post('/newDish',verify, controller.post_new_dish);
 
 //show register page
 router.get('/admin/register',verify, controller.show_register_page);
