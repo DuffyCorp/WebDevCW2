@@ -7,6 +7,22 @@
         <h2>Create a new dish</h2>
         <form method="post" role="form">
             <div class="form-group">
+                <label for="menuName">Choose a menu:</label>
+                <select type="text" class="form-control" name="menuName" id="menuName">
+                {{#entries}}
+                    <option value="{{menuName}}">{{menuName}}</option>
+                {{/entries}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="menuName">Choose a category:</label>
+                <select type="text" class="form-control" name="menuName" id="menuName">
+                {{#entries}}
+                    <option value="{{catName}}">{{catName}}</option>
+                {{/entries}}
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="dishName">New dish Name</label>
                 <input type="text" class="form-control" id="dishName" name="dishName" placeholder="dishName" required>
             </div>
@@ -15,28 +31,20 @@
                 <input type="text" class="form-control" id="dishPrice" name="dishPrice" placeholder="Enter a dish price" required>
             </div>
             <div class="form-group">
-                <label for="dishCategory">New dish category</label>
-                <input type="text" class="form-control" id="dishCategory" name="dishCategory" placeholder="Enter a dish category" required>
-            </div>
-            <div class="form-group">
                 <label for="dishAllergies">New dish allergies</label>
                 <input type="text" class="form-control" id="dishAllergies" name="dishAllergies" placeholder="Enter a dish Allergies" required>
             </div>
-                        <div class="form-group">
-                <label for="vegetarian">Is the new dish vegetarian?</label>
-                <input type="text" class="form-control" id="vegetarian" name="vegetarian" placeholder="vegetarian" required>
+            <div class="form-group">
+                <input type="checkbox" id="vegetarian" name="vegetarian" value="true">
+                <label for="vehicle1"> Is this dish vegetarian?</label><br>
             </div>
-                        <div class="form-group">
-                <label for="glutenFree">is the new dish gluten free?</label>
-                <input type="text" class="form-control" id="glutenFree" name="glutenFree" placeholder="glutenFree" required>
+            <div class="form-group">
+                <input type="checkbox" id="glutenFree" name="glutenFree" value="true">
+                <label for="vehicle1"> Is the new dish gluten free?</label><br>
             </div>
-                        <div class="form-group">
-                <label for="menu">what menu is the new dish</label>
-                <input type="text" class="form-control" id="menu" name="menu" placeholder="menu" required>
-            </div>
-                        <div class="form-group">
-                <label for="available">is the new dish available?</label>
-                <input type="text" class="form-control" id="available" name="available" placeholder="available" required>
+            <div class="form-group">
+                <input type="checkbox" id="available" name="available" value="true">
+                <label for="vehicle1">Is the new dish available?</label><br>
             </div>
             <div class="form-group">
                 <input type="submit" value="Add dish" class="btn btn-primary">
