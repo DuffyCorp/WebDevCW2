@@ -1,15 +1,21 @@
+<!DOCTYPE html>
 <html>
     <head>
-        {{>header}}
     </head>
     <body>
-    <!-- Jumbotron -->
+     <div class="wrapper">
+
+        {{>sidebar}}
+
+        <!-- Page Content  -->
+        <div id="content" class ="active">
+            {{>header}}
+                    <!-- Jumbotron -->
     <div class="p-5 text-center bg-light">
         <h1 class="mb-3">{{title}}</h1>
         <h4 class="mb-3">CW2 Resaurant webapp.</h4>
     </div>
     <!-- Jumbotron -->
-    <div class="container">
         {{#entries}}
         {{^user}}
         <div class="card">
@@ -33,9 +39,10 @@
         {{^entries}}
             No entries yet.
         {{/entries}}
-    </div>
     </body>
     <footer>
         {{>footer}}
     </footer>
+        </div>
+    
 </html>

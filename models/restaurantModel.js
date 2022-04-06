@@ -179,7 +179,10 @@ class Restaurant {
       available: dishAvailable,
     };
     console.log("entry created", entry);
-    this.db.update({menuName: selectMenuName, 'category.catName': dishCatName}, { $addToSet: {'category.dishes': entry } }, {},  function (err, doc) {
+    this.db.update(
+      {"menuName": {"$eq": "Lunch"}},
+      {"$addToSet": {"category.$[cat].dishes": {"name": "pizza"}}},
+      {"arrayFilters": [{"cat.catName": {"$eq": "Mains"}}]},  function (err, doc) {
       if (err) {
         console.log("Error inserting document", subject);
       } else {

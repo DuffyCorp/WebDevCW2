@@ -1,9 +1,12 @@
 <html>
-    <head>
-        {{>header}}
-    </head>
-    <body>
-    <div class="container">
+<body>
+    <div class="wrapper">
+
+        {{>sidebar}}
+
+        <!-- Page Content  -->
+        <div id="content" class ="active">
+            {{>header}}
         <h2>Create a new category</h2>
         <form method="post" role="form">
             <div class="form-group">
@@ -22,9 +25,10 @@
                 <input type="submit" value="Add category" class="btn btn-primary">
             </div>
         </form>
-        </div>
     </body>
     <footer>
-    {{>footer}}
+        {{>footer}}
     </footer>
+        </div>
+    
 </html>

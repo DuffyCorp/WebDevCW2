@@ -1,15 +1,20 @@
 <html>
-    <head>
-        {{>header}}
-    </head>
     <body>
+     <div class="wrapper">
+
+        {{#user}}
+        {{>sidebar}}
+        {{/user}}
+
+        <!-- Page Content  -->
+        <div id="content" class ="active">
+            {{>header}}
     <!-- Jumbotron -->
     <div class="p-5 text-center bg-light">
         <h1 class="mb-3">{{title}}</h1>
         <h4 class="mb-3">CW2 Resaurant webapp.</h4>
     </div>
     <!-- Jumbotron -->
-    <div class="container">
         {{#menus}}
         <h1>{{menuName}}</h1>
         {{#category}}
@@ -42,11 +47,9 @@
         {{^menus}}
             No entries yet.
         {{/menus}}
-        <div>
-        </div>
-        </div>
     </body>
-    <footer>
+        <footer>
         {{>footer}}
     </footer>
+    </div>
 </html>
