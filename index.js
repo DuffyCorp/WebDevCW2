@@ -10,6 +10,7 @@ app.use(cookieParser())
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 
+app.use(express.static('public'));
 const router = require('./routes/restaurantRoutes');
 const controller = require('./controllers/restaurantController')
 const path = require('path');

@@ -11,6 +11,7 @@ class Restaurant {
   }
 
   init() {
+    console.log("Added Site data")
     this.db.insert({
       menuName: "Dinner",
           category: [

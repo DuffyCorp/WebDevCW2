@@ -8,14 +8,17 @@
         {{>sidebar}}
 
         <!-- Page Content  -->
-        <div id="content" class ="active">
+        <div id="content" style="width 100%">
             {{>header}}
-                    <!-- Jumbotron -->
-    <div class="p-5 text-center bg-light">
-        <h1 class="mb-3">{{title}}</h1>
-        <h4 class="mb-3">CW2 Resaurant webapp.</h4>
+    <div class="HeroImage">
+        <div class="heroText">
+            <h1>{{title}}</h1>
+            <h4>CW2 Resaurant webapp.</h4>
+            <a id="login" href="#menus" class="btn btn-primary">Menus</a>
+        </div>
     </div>
-    <!-- Jumbotron -->
+    <div class = "bodyContent" id="menus">
+            <h1>Our menu's</h1>
         {{#entries}}
         {{^user}}
         <div class="card">
@@ -24,7 +27,7 @@
                     <h4>Menu: <a href="/menu/{{menuName}}">{{menuName}}</a></h4>
                 </div>
             </div>
-        </div>
+    </div>
         {{/user}}
         {{#user}}
         <div class="card">
@@ -33,12 +36,13 @@
                     <h4>Menu: <a href="/menu/admin/{{menuName}}">{{menuName}}</a></h4>
                 </div>
             </div>
-        </div>
+    </div>
         {{/user}}
         {{/entries}}
         {{^entries}}
             No entries yet.
         {{/entries}}
+        </div>
     </body>
     <footer>
         {{>footer}}
