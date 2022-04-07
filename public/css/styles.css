@@ -259,6 +259,8 @@ text-align: center;
     transform: scale(1); 
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 
@@ -292,11 +294,25 @@ a.fillCard {
 
 .adminTable{
     min-height: 50vh;
+    padding:20px;
+    background-color: #fff;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+    border-radius: 50px;
+    margin-top: 20px;
+
 }
 
 .tableHeader{
     display: flex;
     justify-content:space-between;
+}
+
+.table{
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
 }
 
 /* ---------------------------------------------------
@@ -368,7 +384,19 @@ a.fillCard {
         display: none;
     }
 
+    .table{
+        border-left-width: 0px;
+        border-right-width: 0px;
+    }
+
     .adminTable{
         min-height: 75vh;
+        padding: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .bodyContent{
+        padding: 20px;
     }
 }
