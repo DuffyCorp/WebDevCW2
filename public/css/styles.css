@@ -12,14 +12,16 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+    background-color: #dedede;
 }
+
 
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: #000;
 }
 
 a,
@@ -48,6 +50,7 @@ a:focus {
     border-radius: 50px;
 }
 
+
 .navbar-btn {
     box-shadow: none;
     outline: none !important;
@@ -71,26 +74,22 @@ a:focus {
 }
 
 #sidebar {
-    margin-left: -250px;
-    width: 250px;
     position: fixed;
     top: 0;
-    left: 0;
+    left: -250px;
+    bottom: 0;
+    width: 250px;
     height: 100vh;
-    z-index: 0;
+    z-index: 999;
     background: #222222;
     color: #fff;
-    transition:  0.3s;
-    visibility: hidden;
-}
-
-#sidebar.active {
-    width: 250px;
-    margin-left: 0px;
-    transition:  0.3s;
-    z-index: 999;
-    visibility: visible;
-}
+    transition: 0.3s;
+  }
+ 
+  #sidebar.active {
+    top: 0;
+     left: 0;
+  }
 
 #sidebar .sidebar-header {
     padding: 20px;
@@ -192,9 +191,112 @@ text-align: center;
   color: white;
 }
 
+.Hero{
+    min-height: 50vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/restaurant.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    color: #fff;
+    z-index: 998;
+}
+
+.heroText .btn{
+    margin-top: 10px;
+    transition: all .2s ease-in-out;
+    transform: scale(1); 
+}
+
+.heroText .btn:hover{
+    transform: scale(1.25);
+  filter: brightness(120%);
+}
+
+.footer .btn{
+    margin-top: 10px;
+    transition: all .2s ease-in-out;
+    transform: scale(1); 
+}
+
+.footer .btn:hover{
+    transform: scale(1.25);
+  filter: brightness(120%);
+}
+
 .bodyContent{
     min-height: 100vh;
     padding: 40px;
+}
+
+.bodyContent h1{
+    text-align: center;
+}
+
+.menuContainer{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #fff;
+    border-radius: 50px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+    flex-wrap: wrap;
+}
+
+.menuCard {
+    background-color: #0069D9;
+    width: 450px;
+    height: 300px;
+    text-align: center;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+    transition: all .2s ease-in-out;
+    transform: scale(1); 
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.menuCard:hover{
+    transform: scale(1.10);
+  filter: brightness(120%);
+}
+
+.menuCard H1{
+    top: 50%;
+    position: relative;
+    color: #fff;
+}
+
+.aboutUs{
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 40px;
+    padding-bottom: 40px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 2px;
+}
+
+a.fillCard {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.adminTable{
+    min-height: 50vh;
+}
+
+.tableHeader{
+    display: flex;
+    justify-content:space-between;
 }
 
 /* ---------------------------------------------------
@@ -203,12 +305,32 @@ text-align: center;
 
 @media (max-width: 768px) {
 
-    #sidebar {
-        margin-left: -250px;
-        z-index: 999;
+    .menuContainer{
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        justify-content: center;
+        align-items: center;    
     }
+
+    .menuCard{
+        width: 90%;
+    }
+
+    #sidebar {
+        position: absolute;
+        top: 0;
+        left: -250px;
+        bottom: 0;
+        width: 250px;
+        height: 100vh;
+        z-index: 999;
+        background: #222222;
+        color: #fff;
+        transition: 0.3s;
+      }
     #sidebar.active {
-        margin-left: 0;
+        left: 0;
     }
     #content {
         width: 100%;
@@ -225,9 +347,28 @@ text-align: center;
     .navbar{
         position: absolute;
         width: 80%;
+        padding-left: 25px;
+        padding-right: 25px;
     }
 
     .navbar li{
-        margin-left: 40px;
+        left:50%;
+    }
+
+    .navbar li a{
+        text-align: center;
+  position: relative;
+    }
+
+    .tableHeader{
+        flex-direction: column;
+    }
+
+    .hideNav{
+        display: none;
+    }
+
+    .adminTable{
+        min-height: 75vh;
     }
 }

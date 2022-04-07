@@ -5,44 +5,57 @@
     <body>
      <div class="wrapper">
 
-        {{>sidebar}}
-
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
         <!-- Page Content  -->
         <div id="content" style="width 100%">
+            
             {{>header}}
-    <div class="HeroImage">
-        <div class="heroText">
-            <h1>{{title}}</h1>
-            <h4>CW2 Resaurant webapp.</h4>
-            <a id="login" href="#menus" class="btn btn-primary">Menus</a>
-        </div>
-    </div>
-    <div class = "bodyContent" id="menus">
-            <h1>Our menu's</h1>
-        {{#entries}}
-        {{^user}}
-        <div class="card">
-            <div class="card-body">
-                <div class="card-title">
-                    <h4>Menu: <a href="/menu/{{menuName}}">{{menuName}}</a></h4>
+            <div class="HeroImage">
+                <div class="heroText">
+                    <h1>{{title}}</h1>
+                    <h4>CW2 Resaurant webapp.</h4>
+                    <a id="login" href="#menus" class="btn btn-primary">Menus</a>
                 </div>
             </div>
-    </div>
-        {{/user}}
-        {{#user}}
-        <div class="card">
-            <div class="card-body">
-                <div class="card-title">
-                    <h4>Menu: <a href="/menu/admin/{{menuName}}">{{menuName}}</a></h4>
+            <div class = "bodyContent" id="menus">
+                <h1>Our menu's</h1>
+    
+                <div class = "menuContainer">
+                    {{#entries}}
+                        {{^user}}
+
+                            <div class="menuCard">
+                                <a href="/menu/{{menuName}}" class="fillCard">
+                                    <h1>{{menuName}}</h1>
+                                </a>
+                            </div>
+                        {{/user}}
+                        {{#user}}
+
+                            <div class="menuCard">
+                                <a href="/menu/admin/{{menuName}}" class="fillCard">
+                                    <h1>{{menuName}}</h1>
+                                </a>
+                            </div>
+                        {{/user}}
+                    {{/entries}}
+                    {{^entries}}
+                        No entries yet.
+                    {{/entries}}
+                </div>
+                <br>
+
+                <h1>About us</h1>
+                <div class="aboutUs">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempus turpis nunc, ut tempor arcu volutpat ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis mauris non congue lobortis. Nulla convallis arcu et elementum pharetra. Pellentesque vel tempor elit. Curabitur et pellentesque orci. Duis commodo tincidunt nibh vitae sollicitudin. Fusce pulvinar mauris eu orci dictum consectetur.
+                        <br><br>
+                        Vivamus dignissim ipsum eget sodales aliquam. Maecenas semper dapibus laoreet. Phasellus augue lorem, euismod nec aliquam non, tincidunt eget nisl. Fusce cursus convallis vestibulum. Vivamus at magna auctor, lacinia ligula id, aliquam nunc. Sed posuere lacinia nulla, id maximus ligula aliquam sit amet. Duis ligula libero, vehicula interdum feugiat viverra, varius at est. Curabitur quis neque rutrum, pretium lacus a, condimentum erat. Aliquam erat volutpat. Maecenas iaculis lectus nec porttitor convallis.
+                    </p>
                 </div>
             </div>
-    </div>
-        {{/user}}
-        {{/entries}}
-        {{^entries}}
-            No entries yet.
-        {{/entries}}
-        </div>
     </body>
     <footer>
         {{>footer}}

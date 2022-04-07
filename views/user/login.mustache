@@ -1,13 +1,21 @@
 <html>
-<body>
-    <div class="wrapper">
+    <body>
+     <div class="wrapper">
 
-        {{>sidebar}}
-
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
         <!-- Page Content  -->
-        <div id="content">
+        <div id="content" style="width 100%">
             {{>header}}
-        <h1>{{title}}</h1>
+
+        <div class="Hero">
+            <div class="heroText">
+                <h1>{{title}}</h1>
+                <h4>Resaurant Login Page.</h4>
+            </div>
+        </div>
+            <div class = "bodyContent" id="menus">
         <h2>Sign In</h2>
         <div id="formContent">
             <!-- Login Form -->

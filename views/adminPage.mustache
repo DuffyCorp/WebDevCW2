@@ -1,31 +1,117 @@
 <!DOCTYPE html>
 <html>
+    <body>
+     <div class="wrapper">
 
-<body>
-    <div class="wrapper">
-
-        {{>sidebar}}
-
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
         <!-- Page Content  -->
-        <div id="content">
+        <div id="content" style="width 100%" class="{{admin}}">
             {{>header}}
 
-            <!-- Jumbotron -->
-    <div class="p-5 text-center bg-light">
-        <h1 class="mb-3">{{title}}</h1>
-        <h4 class="mb-3">Admin page for resaurant web app</h4>
-    </div>
-    <!-- Jumbotron -->
-    <div class="container">
-        {{#entries}}
-        <div class="card">
-            <div class="card-body">
-                <div class="card-title">
-                    <h4>Menu: <a href="/menu/admin/{{menuName}}">{{menuName}}</a></h4>
-                </div>
+        <div class="Hero">
+            <div class="heroText">
+                <h1>{{title}}</h1>
             </div>
         </div>
-        {{/entries}}
+            <div class = "bodyContent" id="menus">
+
+<div id="editMenus" class="adminTable">
+
+<div class ="tableHeader">
+<h1>Edit Menus</h1>
+    <div class="text-center py-3">
+        <a id="login" href="/newMenu" class="btn btn-primary">Add Menu</a>
+    </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Menu Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#entries}}
+                <tr>
+                    <td scope="row">{{menuName}}</td>
+                    <td><a href="/editMenu/{{menuName}}">edit</a></td>
+                    <td><a href="/deleteMenu/{{menuName}}">delete</a></td>
+                </tr>
+            {{/entries}}
+        </tbody>
+    </table>
+</div>
+
+<div id="editCats" class="adminTable">
+
+
+<div class ="tableHeader">
+<h1>Edit Categories</h1>
+    <div class="text-center py-3">
+        <a id="login" href="/newCat" class="btn btn-primary">Add Category</a>
+    </div>
+</div>
+        <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Category Name</th>
+        <th scope="col">Menu Name</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#entries}}
+        {{#category}}
+    <tr>
+    <td scope="row">{{catName}}</td>
+      <td>{{menuName}}</td>
+      <td><a href="/editCat/{{catName}}">edit</a></td>
+      <td><a href="/deleteCat/{{catName}}">delete</a></td>
+    </tr>
+          {{/category}}
+    {{/entries}}
+  </tbody>
+</table>
+</div>
+
+<div id="editDishes" class="adminTable">
+<div class ="tableHeader">
+<h1>Edit Dishes</h1>
+    <div class="text-center py-3">
+        <a id="login" href="/newDish" class="btn btn-primary">Add Dish</a>
+    </div>
+    </div>
+        <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Dish Name</th>
+        <th scope="col" class="hideNav">Menu Name</th>
+        <th scope="col" class="hideNav">Category Name</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#entries}}
+  {{#category}}
+  {{#dishes}}
+    <tr>
+        <td scope="row">{{name}}</td>
+        <td class="hideNav">{{menuName}}</td>
+        <td class="hideNav">{{catName}}</td>
+        <td><a href="/editDish/{{name}}">edit</a></td>
+        <td><a href="/deleteDish/{{name}}">delete</a></td>
+    </tr>
+    {{/dishes}}
+    {{/category}}
+    {{/entries}}
+  </tbody>
+</table>
+</div>
         {{^entries}}
             No entries yet.
         {{/entries}}
@@ -36,4 +122,10 @@
     </footer>
         </div>
     
+    <script>
+    if (screen.height < 768){
+    $('#sidebar, #content').toggleClass('active');  
+    }
+    </script>
+
 </html>
