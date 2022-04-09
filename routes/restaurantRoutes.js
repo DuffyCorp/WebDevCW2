@@ -19,6 +19,10 @@ router.get('/menu/admin/:name',verify, controller.logged_show_user_entries);
 router.get('/newMenu',verify, controller.show_new_menu)
 router.post('/newMenu',verify, controller.post_new_menu);
 
+//For edit Menus
+router.get('/editMenu/:name',verify, controller.show_edit_menu)
+router.post('/editMenu/:name',verify, controller.post_edit_menu);
+
 //For new category's
 router.get('/newCat',verify, controller.show_new_cat)
 router.post('/newCat',verify, controller.post_new_cat);

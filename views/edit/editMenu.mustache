@@ -1,0 +1,34 @@
+<html>
+    <body>
+     <div class="wrapper">
+
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
+        <!-- Page Content  -->
+        <div id="content" style="width 100%" class="{{admin}}">
+            {{>header}}
+
+        <div class="Hero">
+            <div class="heroText">
+                <h1>{{title}}</h1>
+            </div>
+        </div>
+            <div class = "bodyContent" id="menus">
+        <h2>Edit a menu</h2>
+        <form method="post" role="form">
+            <div class="form-group">
+                <label for="newMenuName">New menu name</label>
+                <input type="text" class="form-control" id="newMenuName" name="newMenuName" placeholder="New menu name" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit menu" class="btn btn-primary">
+            </div>
+        </form>
+    </body>
+    <footer>
+        {{>footer}}
+    </footer>
+        </div>
+       <script src="/js/admin.js"></script>
+</html>

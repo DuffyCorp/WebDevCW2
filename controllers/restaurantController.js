@@ -185,6 +185,33 @@ exports.post_new_menu = function (req, res) {
   res.redirect("/admin");
 };
 
+exports.show_edit_menu = function (req, res) {
+  db.getAllMenus()
+    .then((list) => {
+      res.render("edit/editMenu", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_edit_menu = function (req, res) {
+  console.log(req.body.oldMenuName, req.body.newMenuName)
+  console.log("processing post-new_menu controller");
+  if (!req.body.newMenuName) {
+    response.status(400).send("menus must have a name!.");
+    return;
+  }
+  db.editMenu(req.body.oldMenuName, req.body.newMenuName);
+  res.redirect("/admin");
+};
+
 exports.show_new_cat = function (req, res) {
   db.getAllMenus()
     .then((list) => {
@@ -235,6 +262,6 @@ exports.post_new_dish = function (req, res) {
     response.status(400).send("Category must have a name!.");
     return;
   }
-  db.addDish(req.body.menuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.vegetarian, req.body.glutenFree, req.body.available);
+  db.addDish(req.body.menuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.arrayIndex);
   res.redirect("/admin");
 };

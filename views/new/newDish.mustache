@@ -26,15 +26,19 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="dishCategory">Choose a category:</label>
-                <select type="text" class="form-control" name="dishCategory" id="dishCategory">
-                {{#entries}}
-                    {{#category}}
-                    <option value="{{catName}}">{{catName}}</option>
-                    {{/category}}
-                {{/entries}}
-                </select>
-            </div>
+
+  <input type="hidden" id="arrayIndex" name="arrayIndex" value=0>
+  <div id="msg">Select an option in the dropdown...</div>
+  
+  <label for="dishCategory">Choose a category:</label>  
+  <select type="text" class="form-control" name="dishCategory" id="dishCategory">
+        {{#entries}}
+            {{#category}}
+                <option value="{{catName}}">{{catName}}</option>
+            {{/category}}
+        {{/entries}}
+  </select>
+</div>
             <div class="form-group">
                 <label for="dishName">New dish Name</label>
                 <input type="text" class="form-control" id="dishName" name="dishName" placeholder="dishName" required>
@@ -65,4 +69,25 @@
     </footer>
         </div>
        <script src="/js/admin.js"></script>
+       <script>
+            document.addEventListener("DOMContentLoaded", function() {
+ 
+            let select = document.getElementById('dishCategory');
+            select.addEventListener('change', (event) => {
+  
+            //value of the selected option
+            let selectedValue = select.value;
+            //index of the selected option
+            let selectedOptionIndex = select.selectedIndex;
+            //the entire selected option element
+            let selectedOption = select.options[select.selectedIndex];
+      
+            //updates the msg with information about which option was picked
+            document.getElementById('msg').innerText =`The index of the option chosen was: ${selectedOptionIndex}`;
+      
+            //updates the value of the hidden input with such index
+            document.getElementById('arrayIndex').value = selectedOptionIndex;      
+        });
+    });
+       </script>
 </html>

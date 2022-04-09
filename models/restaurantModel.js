@@ -1,4 +1,5 @@
 const nedb = require("nedb");
+const { resolve } = require("path");
 
 class Restaurant {
   constructor(dbFilePath) {
@@ -116,7 +117,7 @@ class Restaurant {
         } else {
           resolve(menus);
           //to see what the returned data looks like
-          console.log("function all() returns: ", menus);
+          console.log("function all() returns: ", JSON.stringify(menus, null , 2));
         }
       });
     });
@@ -152,6 +153,12 @@ class Restaurant {
     });
   }
 
+  editMenu(newMenuName) {
+  }
+
+  deleteMenu(newMenuName) {
+  }
+
   addCat(selectMenuName, newCatName) {
     console.log(selectMenuName)
     console.log(newCatName)
@@ -169,7 +176,13 @@ class Restaurant {
     });
   }
 
-  addDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable) {
+  editCat(selectMenuName, newCatName) {
+  }
+
+  deleteCat(selectMenuName, newCatName) {
+  }
+
+  addDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
     console.log(selectMenuName)
     console.log(dishCatName)
     var entry = {
@@ -180,13 +193,23 @@ class Restaurant {
       available: dishAvailable,
     };
     console.log("entry created", entry);
-    this.db.update({ menuName: selectMenuName, category: dishCatName }, { $addToSet: { 'category.dishes': entry } }, {},  function (err, doc) {
+
+    var index = parseInt(arrayIndex, 10)
+    console.log(index)
+
+    this.db.update({menuName: selectMenuName}, {$addToSet: {[`category.${index}.dishes`]: entry}}, {},  function (err, doc) {
       if (err) {
         console.log("Error inserting document", subject);
       } else {
         console.log("document inserted into the database", doc);
       }
     });
+  }
+
+  editDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
+  }
+
+  deleteDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
   }
 
   //End of class
