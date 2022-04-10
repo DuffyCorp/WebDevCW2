@@ -19,7 +19,8 @@
         <form method="post" role="form">
             <div class="form-group">
                 <label for="menuName">Choose a menu:</label>
-                <select type="text" class="form-control" name="menuName" id="menuName">
+                <select type="text" class="form-control" name="menuName" id="menuName" required>
+                    <option value="" disabled selected>Select your option</option>
                 {{#entries}}
                     <option value="{{menuName}}">{{menuName}}</option>
                 {{/entries}}
@@ -28,10 +29,9 @@
             <div class="form-group">
 
   <input type="hidden" id="arrayIndex" name="arrayIndex" value=0>
-  <div id="msg">Select an option in the dropdown...</div>
-  
   <label for="dishCategory">Choose a category:</label>  
-  <select type="text" class="form-control" name="dishCategory" id="dishCategory">
+  <select type="text" class="form-control" name="dishCategory" id="dishCategory" required>
+  <option value="" disabled selected>Select your option</option>
         {{#entries}}
             {{#category}}
                 <option value="{{catName}}">{{catName}}</option>
@@ -74,17 +74,10 @@
  
             let select = document.getElementById('dishCategory');
             select.addEventListener('change', (event) => {
-  
-            //value of the selected option
-            let selectedValue = select.value;
+
             //index of the selected option
-            let selectedOptionIndex = select.selectedIndex;
-            //the entire selected option element
-            let selectedOption = select.options[select.selectedIndex];
-      
-            //updates the msg with information about which option was picked
-            document.getElementById('msg').innerText =`The index of the option chosen was: ${selectedOptionIndex}`;
-      
+            let selectedOptionIndex = select.selectedIndex-1;
+                  
             //updates the value of the hidden input with such index
             document.getElementById('arrayIndex').value = selectedOptionIndex;      
         });

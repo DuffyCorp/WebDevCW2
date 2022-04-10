@@ -315,6 +315,15 @@ a.fillCard {
     border-width: 2px;
 }
 
+.table a{
+    color: #006FF3;
+    text-decoration: revert;
+}
+
+.table a:visited{
+    color: #006FF3;
+}
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
