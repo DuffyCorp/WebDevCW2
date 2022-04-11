@@ -114,6 +114,37 @@
   </tbody>
 </table>
 </div>
+
+<div id="editStaff" class="adminTable">
+<div class ="tableHeader">
+<h1>Edit Staff</h1>
+    <div class="text-center py-3">
+        <a id="login" href="/newDish" class="btn btn-primary">Register Staff</a>
+    </div>
+    </div>
+        <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Staff Name</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#entries}}
+  {{#category}}
+  {{#dishes}}
+    <tr>
+        <td scope="row">{{name}}</td>
+        <td><a href="/editDish/{{name}}">edit</a></td>
+        <td><a href="/deleteDish/{{name}}">delete</a></td>
+    </tr>
+    {{/dishes}}
+    {{/category}}
+    {{/entries}}
+  </tbody>
+</table>
+</div>
         {{^entries}}
             No entries yet.
         {{/entries}}
