@@ -45,6 +45,25 @@ class UserDAO {
       }
     });
   }
+
+  getAllStaff() {
+    //return a Promise object, which can be resolved or rejected
+    return new Promise((resolve, reject) => {
+      //use the find() function of the database to get the data,
+      //error first callback function, err for error, entries for data
+      this.db.find({}, function (err, staff) {
+        //if error occurs reject Promise
+        if (err) {
+          reject(err);
+          //if no error resolve the promise & return the data
+        } else {
+          resolve(staff);
+          //to see what the returned data looks like
+          console.log("function all() returns: ", JSON.stringify(staff, null , 2));
+        }
+      });
+    });
+  }
 }
 const dao = new UserDAO();
 dao.init();

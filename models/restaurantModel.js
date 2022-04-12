@@ -197,7 +197,7 @@ class Restaurant {
     var index = parseInt(arrayIndex, 10)
     console.log(index)
 
-    this.db.update({menuName: selectMenuName}, {$addToSet: {[`category.${index}.dishes`]: entry}}, {},  function (err, doc) {
+    this.db.update({menuName: selectMenuName, 'category.catName': dishCatName}, {$addToSet: {[`category.${index}.dishes`]: entry}}, {upsert: true},  function (err, doc) {
       if (err) {
         console.log("Error inserting document", subject);
       } else {

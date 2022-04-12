@@ -131,17 +131,11 @@
     </tr>
   </thead>
   <tbody>
-  {{#entries}}
-  {{#category}}
-  {{#dishes}}
     <tr>
         <td scope="row">{{name}}</td>
         <td><a href="/editDish/{{name}}">edit</a></td>
         <td><a href="/deleteDish/{{name}}">delete</a></td>
     </tr>
-    {{/dishes}}
-    {{/category}}
-    {{/entries}}
   </tbody>
 </table>
 </div>
