@@ -256,12 +256,12 @@ exports.show_new_dish = function (req, res) {
 };
 
 exports.post_new_dish = function (req, res) {
-  console.log(req.body.menuName, req.body.dishCategory)
+  console.log(req.body.selectMenuName, req.body.dishCategory)
   console.log("processing post-new_dish controller");
   if (!req.body.dishCategory) {
     response.status(400).send("Category must have a name!.");
     return;
   }
-  db.addDish(req.body.menuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.arrayIndex);
+  db.addDish(req.body.selectMenuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.arrayIndex);
   res.redirect("/admin");
 };

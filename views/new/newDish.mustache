@@ -1,86 +1,151 @@
 <html>
     <body>
-     <div class="wrapper">
+        <div class="wrapper">
 
-        {{#user}}
-            {{>sidebar}}
-        {{/user}}
-        <!-- Page Content  -->
-        <div id="content" style="width 100%" class="{{admin}}">
-            {{>header}}
+            {{#user}}
+                {{>sidebar}}
+            {{/user}}
+            
+            <!-- Page Content  -->
+            <div id="content" style="width 100%" class="{{admin}}">
 
-        <div class="Hero">
-            <div class="heroText">
-                <h1>{{title}}</h1>
-            </div>
-        </div>
-            <div class = "bodyContent" id="menus">
-        <h2>Create a new dish</h2>
-        <form method="post" role="form">
-            <div class="form-group">
-                <label for="menuName">Choose a menu:</label>
-                <select type="text" class="form-control" name="menuName" id="menuName" required>
-                    <option value="" disabled selected>Select your option</option>
-                {{#entries}}
-                    <option value="{{menuName}}">{{menuName}}</option>
-                {{/entries}}
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="hidden" id="arrayIndex" name="arrayIndex" value=0>
+                {{>header}}
+
+                <div class="Hero">
+                    <div class="heroText">
+                        <h1>{{title}}</h1>
+                    </div>
+                </div>
+
+                <div class = "bodyContent" id="menus">
+        
+                    <h2>Create a new dish</h2>
+                    <form method="post" role="form">
+
+                        <div class="form-group">
+
+                            <label for="selectMenuName">Choose a menu:</label>
+                            <select type="text" class="form-control" name="selectMenuName" id="selectMenuName" required>
+                                <option value="" disabled selected>Select your option</option>
+                                {{#entries}}
+                                    <option value="{{menuName}}">{{menuName}}</option>
+                                {{/entries}}
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            
+                            <input type="hidden" id="arrayIndex" name="arrayIndex" value=0>
+                        
+                            <div>
+                            
+                                <label for="dishCategory">Choose a category:</label> 
+                                {{#entries}} 
+                                    <select type="text" class="form-control hideable" name="dishCategory" id="{{menuName}}" style="display: none">
+                                        <option value="" disabled selected>Select your option</option>
+                                        {{#category}}
+                                            <option class ="input" value="{{catName}}">{{catName}}</option>
+                                        {{/category}}
+                                    </select>
+                                {{/entries}}
+
+                            </div>
+
+                        </div>
+                        
+                        <div class="form-group">
+
+                            <label for="dishName">New dish Name</label>
+                            <input type="text" class="form-control" id="dishName" name="dishName" placeholder="dishName" required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="dishPrice">New dish price</label>
+                            <input type="text" class="form-control" id="dishPrice" name="dishPrice" placeholder="Enter a dish price" required>
+                        
+                        </div>
+
+                        <div class="form-group">
+                    
+                            <input type="checkbox" id="vegetarian" name="vegetarian" value="true">
+                            <label for="vehicle1"> Is this dish vegetarian?</label><br>
+            
+                        </div>
+            
+                        <div class="form-group">
                 
-                <label for="dishCategory">Choose a category:</label>  
-                <select type="text" class="form-control" name="dishCategory" id="dishCategory" required>
-                    <option value="" disabled selected>Select your option</option>
-                    {{#entries}}
-                        {{#category}}
-                            <option value="{{catName}}">{{catName}}</option>
-                        {{/category}}
-                    {{/entries}}
-                </select>
+                            <input type="checkbox" id="glutenFree" name="glutenFree" value="true">
+                            <label for="vehicle1"> Is the new dish gluten free?</label><br>
+            
+                        </div>
+            
+                        <div class="form-group">
+                            
+                            <input type="checkbox" id="available" name="available" value="true">
+                            <label for="vehicle1">Is the new dish available?</label><br>
+            
+                        </div>
+            
+                        <div class="form-group">
+                            
+                            <input type="submit" value="Add dish" class="btn btn-primary" onclick="getIndex()">
+            
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="dishName">New dish Name</label>
-                <input type="text" class="form-control" id="dishName" name="dishName" placeholder="dishName" required>
-            </div>
-            <div class="form-group">
-                <label for="dishPrice">New dish price</label>
-                <input type="text" class="form-control" id="dishPrice" name="dishPrice" placeholder="Enter a dish price" required>
-            </div>
-            <div class="form-group">
-                <input type="checkbox" id="vegetarian" name="vegetarian" value="true">
-                <label for="vehicle1"> Is this dish vegetarian?</label><br>
-            </div>
-            <div class="form-group">
-                <input type="checkbox" id="glutenFree" name="glutenFree" value="true">
-                <label for="vehicle1"> Is the new dish gluten free?</label><br>
-            </div>
-            <div class="form-group">
-                <input type="checkbox" id="available" name="available" value="true">
-                <label for="vehicle1">Is the new dish available?</label><br>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Add dish" class="btn btn-primary">
-            </div>
-        </form>
     </body>
     <footer>
+
         {{>footer}}
+
     </footer>
         </div>
        <script src="/js/admin.js"></script>
-       <script>
+
+        <script>
             document.addEventListener("DOMContentLoaded", function() {
  
-            let select = document.getElementById('dishCategory');
-            select.addEventListener('change', (event) => {
+                let select = document.getElementById('selectMenuName');
+                select.addEventListener('change', (event) => {
 
-            //index of the selected option
-            let selectedOptionIndex = select.selectedIndex-1;
+                    //index of the selected option
+                    let selectedValue = select.value;
+                      
+
+                    var choices = document.getElementById(selectedValue);
+
+
+                    $(".hideable").hide();
+                    $('.input').attr('required', false);
+                    $('.hideable').attr('disabled', 'disabled');  
+                    if(choices.style.display == "none"){  
+                        choices.style.display = "";
+                        choices.required = true;
+                        choices.disabled = false;
+                    }
+                });
+            });
+        </script>
+       <script>
+            getIndex  = function() {
+                //get select menu dropdown
+                let select = document.getElementById('selectMenuName');
+             
+                //get value chosen by user in select menu
+                let selectedValue = select.value;
+
+                //get the appropriate dropdown to use for adding dish      
+                var choices = document.getElementById(selectedValue);
+
+                //get index as selected index -1 to account for disabled choice
+                let selectedOptionIndex = choices.selectedIndex-1;
                   
-            //updates the value of the hidden input with such index
-            document.getElementById('arrayIndex').value = selectedOptionIndex;      
-        });
-    });
+                //updates the value of the hidden input with such index
+                document.getElementById('arrayIndex').value = selectedOptionIndex;     
+            }
        </script>
 </html>
