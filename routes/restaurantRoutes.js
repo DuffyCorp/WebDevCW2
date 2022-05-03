@@ -42,8 +42,8 @@ router.get('/editCat/:menu/:cat',verify, controller.show_edit_cat);
 router.post('/editCat/:menu/:cat',verify, controller.post_edit_cat);
 
 //For delete category's
-router.get('/deleteCat/:name',verify, controller.show_delete_cat)
-router.post('/deleteCat/:name',verify, controller.post_delete_cat);
+router.get('/deleteCat/:menu/:cat',verify, controller.show_delete_cat)
+router.post('/deleteCat/:menu/:cat',verify, controller.post_delete_cat);
 
 
 

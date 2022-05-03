@@ -17,25 +17,6 @@ class Restaurant {
       menuName: "Dinner",
           category: [
             {
-              catName: "Mains",
-              dishes: [
-                {
-                  name: "Pizza",
-                  price: 12.99,
-                  vegetarian: true,
-                  glutenFree: false,
-                  available: true,
-                },
-                {
-                  name: "Steak",
-                  price: 18.99,
-                  vegetarian: false,
-                  glutenFree: true,
-                  available: true,
-                },
-              ],
-            },
-            {
               catName: "Starters",
               dishes: [
                 {
@@ -54,31 +35,31 @@ class Restaurant {
                 },
               ],
             },
+            {
+              catName: "Mains",
+              dishes: [
+                {
+                  name: "Pizza",
+                  price: 12.99,
+                  vegetarian: true,
+                  glutenFree: false,
+                  available: true,
+                },
+                {
+                  name: "Steak",
+                  price: 18.99,
+                  vegetarian: false,
+                  glutenFree: true,
+                  available: true,
+                },
+              ],
+            },
           ],
     });
     console.log("Added Dinner Menu")
     this.db.insert({
       menuName: "Lunch",
           category: [
-            {
-              catName: "Mains",
-              dishes: [
-                {
-                  name: "Burger",
-                  price: 8.99,
-                  vegetarian: false,
-                  glutenFree: false,
-                  available: true,
-                },
-                {
-                  name: "Pasta",
-                  price: 7.99,
-                  vegetarian: true,
-                  glutenFree: false,
-                  available: true,
-                },
-              ],
-            },
             {
               catName: "Starters",
               dishes: [
@@ -92,6 +73,25 @@ class Restaurant {
                 {
                   name: "Tomato soup",
                   price: 5.99,
+                  vegetarian: true,
+                  glutenFree: false,
+                  available: true,
+                },
+              ],
+            },
+            {
+              catName: "Mains",
+              dishes: [
+                {
+                  name: "Burger",
+                  price: 8.99,
+                  vegetarian: false,
+                  glutenFree: false,
+                  available: true,
+                },
+                {
+                  name: "Pasta",
+                  price: 7.99,
                   vegetarian: true,
                   glutenFree: false,
                   available: true,
@@ -233,11 +233,15 @@ class Restaurant {
     });
   }
 
-  editCat(MenuName, oldCatName, newCatName) {
+  editCat(MenuName, oldCatName, newCatName, catIndex) {
     console.log(MenuName)
     console.log(oldCatName)
     console.log(newCatName)
-    this.db.update({category: { $elemMatch: { catName: 'catName' } }},{$set:{'category.0.catName':newCatName}}, function (err, doc) {
+
+    var index = parseInt(catIndex, 10)
+    console.log(index)
+
+    this.db.update({menuName: MenuName},{$set:{[`category.${index}.catName`]: newCatName}}, function (err, doc) {
       if (err) {
         console.log("Error updating menu", subject);
       } else {

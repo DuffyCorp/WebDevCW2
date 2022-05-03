@@ -276,7 +276,7 @@ exports.show_edit_cat = function (req, res) {
 
   console.log(menu)
   console.log(cat)
-  db.getCat(menu,cat)
+  db.getMenu(menu)
     .then((list) => {
       res.render("edit/editCat", {
         title: "Restaurant webApp",
@@ -284,7 +284,7 @@ exports.show_edit_cat = function (req, res) {
         user: "user",
         admin: "active",
         catMenu: menu,
-        catName: cat,
+        selectCatName: cat,
       });
       console.log("promise resolved");
     })
@@ -294,27 +294,32 @@ exports.show_edit_cat = function (req, res) {
 };
 
 exports.post_edit_cat = function (req, res) {
-  console.log(req.body.CatMenu, req.body.oldCatName, req.body.newCatName,)
+  console.log(req.body.CatMenu, req.body.oldCatName, req.body.newCatName, req.body.catIndex)
   console.log("processing post-edit_cat controller");
   if (!req.body.newCatName) {
     response.status(400).send("menus must have a name!.");
     return;
   }
-  db.editCat(req.body.CatMenu, req.body.oldCatName, req.body.newCatName);
+  db.editCat(req.body.CatMenu, req.body.oldCatName, req.body.newCatName, req.body.catIndex);
   res.redirect("/admin");
 };
 
 exports.show_delete_cat = function (req, res) {
-  menu = req.params.name
+  menu = req.params.menu
+  cat = req.params.cat
+
+  console.log(menu)
+  console.log(cat)
   db.getMenu(menu)
     .then((list) => {
-      res.render("delete/deleteMenu", {
+      res.render("delete/deleteCat", {
         title: "Restaurant webApp",
         entries: list,
         user: "user",
         admin: "active",
+        catMenu: menu,
+        selectCatName: cat,
       });
-      console.log("promise resolved");
     })
     .catch((err) => {
       console.log("promise rejected", err);

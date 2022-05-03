@@ -1,0 +1,63 @@
+<html>
+    <body>
+     <div class="wrapper">
+
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
+        <!-- Page Content  -->
+        <div id="content" style="width 100%" class="{{admin}}">
+            {{>header}}
+
+        <div class="Hero">
+            <div class="heroText">
+                <h1>{{title}}</h1>
+            </div>
+        </div>
+            <div class = "bodyContent" id="menus">
+        <h2>Delete a category</h2>
+        {{#entries}}
+        <form method="post" role="form">
+            <div class="form-group">
+                <label for="CatMenu">Category menu</label>
+                <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" readonly="readonly">
+            </div>
+            {{#category}}
+            <div class="{{catName}}" style="display: none">
+                <label for="oldCatName">Category name</label>
+                <input type="text" class="form-control" value="{{catName}}" readonly="readonly" disabled>
+                <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
+            </div>
+            {{/category}}
+            {{/entries}}
+
+            <input type = hidden name="CatMenu" value="{{catMenu}}">
+
+            <input type = hidden name="oldCatName" value="{{selectCatName}}">
+
+            <div class="form-group">
+                <input type="submit" value="delete category" class="btn btn-primary">
+            </div>
+        </form>
+    </body>
+    <footer>
+        {{>footer}}
+    </footer>
+        </div>
+       <script src="/js/admin.js"></script>
+       <script>
+        var category = "{{selectCatName}}"
+    
+        var choices = document.getElementsByClassName(category);
+            for (var i = 0; i <choices.length; i++){
+                choices[i].style.display="";
+            }
+
+        var list = document.getElementsByClassName("categorys");
+            for (var i = 0; i < list.length; i++) {
+                list[i].value = (i);
+            };
+
+        document.getElementById(category).disabled = false;
+       </script>
+</html>

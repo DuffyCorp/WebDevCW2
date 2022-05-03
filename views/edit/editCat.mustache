@@ -19,28 +19,49 @@
         {{#entries}}
         <form method="post" role="form">
             <div class="form-group">
-                <label for="CatMenu" id="CatMenu" name="CatMenu">Old category menu</label>
-                <input type="text" class="form-control" value="{{catMenu}}" disabled>
-                <input type="hidden" id="CatMenu" name="CatMenu" value="{{catMenu}}">
+                <label for="CatMenu">Old category menu</label>
+                <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" readonly="readonly">
             </div>
-            <div class="form-group">
-                <label for="oldCatName" id="oldCatName" name="oldCatName">Old category name</label>
-                <input type="text" class="form-control" value="{{catName}}" disabled>
-                <input type="hidden" id="oldCatName" name="oldCatName" value="{{catName}}">
+            {{#category}}
+            <div class="{{catName}}" style="display: none">
+                <label for="oldCatName">Old category name</label>
+                <input type="text" class="form-control" value="{{catName}}" readonly="readonly" disabled>
+                <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
             </div>
+            {{/category}}
+            {{/entries}}
+
+            <input type = hidden name="CatMenu" value="{{catMenu}}">
+
+            <input type = hidden name="oldCatName" value="{{selectCatName}}">
+
             <div class="form-group">
                 <label for="newCatName">New category name</label>
                 <input type="text" class="form-control" id="newCatName" name="newCatName" placeholder="New category name" required>
             </div>
             <div class="form-group">
-                <input type="submit" value="Edit menu" class="btn btn-primary">
+                <input type="submit" value="Edit category" class="btn btn-primary">
             </div>
         </form>
-        {{/entries}}
     </body>
     <footer>
         {{>footer}}
     </footer>
         </div>
        <script src="/js/admin.js"></script>
+       <script>
+        var category = "{{selectCatName}}"
+    
+        var choices = document.getElementsByClassName(category);
+            for (var i = 0; i <choices.length; i++){
+                choices[i].style.display="";
+            }
+
+        var list = document.getElementsByClassName("categorys");
+            for (var i = 0; i < list.length; i++) {
+                list[i].value = (i);
+            };
+
+        document.getElementById(category).disabled = false;
+       </script>
 </html>
