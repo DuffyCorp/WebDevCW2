@@ -16,7 +16,13 @@
         </div>
             <div class = "bodyContent" id="menus">
         <h2>Edit a menu</h2>
+        {{#entries}}
         <form method="post" role="form">
+            <div class="form-group">
+                <label for="newMenuName" id="oldMenuName" name="oldMenuName">Old menu name</label>
+                <input type="text" class="form-control" value="{{menuName}}" disabled>
+                <input type="hidden" id="oldMenuName" name="oldMenuName" value="{{menuName}}">
+            </div>
             <div class="form-group">
                 <label for="newMenuName">New menu name</label>
                 <input type="text" class="form-control" id="newMenuName" name="newMenuName" placeholder="New menu name" required>
@@ -25,6 +31,7 @@
                 <input type="submit" value="Edit menu" class="btn btn-primary">
             </div>
         </form>
+        {{/entries}}
     </body>
     <footer>
         {{>footer}}

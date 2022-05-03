@@ -186,7 +186,8 @@ exports.post_new_menu = function (req, res) {
 };
 
 exports.show_edit_menu = function (req, res) {
-  db.getAllMenus()
+  menu = req.params.name
+  db.getMenu(menu)
     .then((list) => {
       res.render("edit/editMenu", {
         title: "Restaurant webApp",
@@ -203,12 +204,40 @@ exports.show_edit_menu = function (req, res) {
 
 exports.post_edit_menu = function (req, res) {
   console.log(req.body.oldMenuName, req.body.newMenuName)
-  console.log("processing post-new_menu controller");
+  console.log("processing post-edit_menu controller");
   if (!req.body.newMenuName) {
     response.status(400).send("menus must have a name!.");
     return;
   }
   db.editMenu(req.body.oldMenuName, req.body.newMenuName);
+  res.redirect("/admin");
+};
+
+exports.show_delete_menu = function (req, res) {
+  menu = req.params.name
+  db.getMenu(menu)
+    .then((list) => {
+      res.render("delete/deleteMenu", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_delete_menu = function (req, res) {
+  console.log(req.body.MenuName)
+  console.log("processing post-delete_menu controller");
+  if (!req.body.MenuName) {
+    response.status(400).send("menus must have a name!.");
+    return;
+  }
+  db.deleteMenu(req.body.MenuName);
   res.redirect("/admin");
 };
 
@@ -228,6 +257,8 @@ exports.show_new_cat = function (req, res) {
     });
 };
 
+
+
 exports.post_new_cat = function (req, res) {
   console.log(req.body.menuName, req.body.newCatName)
   console.log("processing post-new_cat controller");
@@ -238,6 +269,70 @@ exports.post_new_cat = function (req, res) {
   db.addCat(req.body.menuName, req.body.newCatName);
   res.redirect("/admin");
 };
+
+exports.show_edit_cat = function (req, res) {
+  menu = req.params.menu
+  cat = req.params.cat
+
+  console.log(menu)
+  console.log(cat)
+  db.getCat(menu,cat)
+    .then((list) => {
+      res.render("edit/editCat", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+        catMenu: menu,
+        catName: cat,
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_edit_cat = function (req, res) {
+  console.log(req.body.CatMenu, req.body.oldCatName, req.body.newCatName,)
+  console.log("processing post-edit_cat controller");
+  if (!req.body.newCatName) {
+    response.status(400).send("menus must have a name!.");
+    return;
+  }
+  db.editCat(req.body.CatMenu, req.body.oldCatName, req.body.newCatName);
+  res.redirect("/admin");
+};
+
+exports.show_delete_cat = function (req, res) {
+  menu = req.params.name
+  db.getMenu(menu)
+    .then((list) => {
+      res.render("delete/deleteMenu", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_delete_cat = function (req, res) {
+  console.log(req.body.MenuName)
+  console.log("processing post-delete_menu controller");
+  if (!req.body.MenuName) {
+    response.status(400).send("menus must have a name!.");
+    return;
+  }
+  db.deleteMenu(req.body.MenuName);
+  res.redirect("/admin");
+};
+
+
 
 exports.show_new_dish = function (req, res) {
   db.getAllMenus()
@@ -263,5 +358,65 @@ exports.post_new_dish = function (req, res) {
     return;
   }
   db.addDish(req.body.selectMenuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.arrayIndex);
+  res.redirect("/admin");
+};
+
+exports.show_edit_dish = function (req, res) {
+  menu = req.params.menu
+  cat = req.params.cat
+
+  console.log(menu)
+  console.log(cat)
+  db.getCat(menu)
+    .then((list) => {
+      res.render("edit/editMenu", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_edit_dish = function (req, res) {
+  console.log(req.body.oldMenuName, req.body.newMenuName)
+  console.log("processing post-edit_menu controller");
+  if (!req.body.newMenuName) {
+    response.status(400).send("menus must have a name!.");
+    return;
+  }
+  db.editMenu(req.body.oldMenuName, req.body.newMenuName);
+  res.redirect("/admin");
+};
+
+exports.show_delete_dish = function (req, res) {
+  menu = req.params.name
+  db.getMenu(menu)
+    .then((list) => {
+      res.render("delete/deleteMenu", {
+        title: "Restaurant webApp",
+        entries: list,
+        user: "user",
+        admin: "active",
+      });
+      console.log("promise resolved");
+    })
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+exports.post_delete_dish = function (req, res) {
+  console.log(req.body.MenuName)
+  console.log("processing post-delete_menu controller");
+  if (!req.body.MenuName) {
+    response.status(400).send("menus must have a name!.");
+    return;
+  }
+  db.deleteMenu(req.body.MenuName);
   res.redirect("/admin");
 };

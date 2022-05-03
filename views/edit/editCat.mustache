@@ -1,0 +1,46 @@
+<html>
+    <body>
+     <div class="wrapper">
+
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
+        <!-- Page Content  -->
+        <div id="content" style="width 100%" class="{{admin}}">
+            {{>header}}
+
+        <div class="Hero">
+            <div class="heroText">
+                <h1>{{title}}</h1>
+            </div>
+        </div>
+            <div class = "bodyContent" id="menus">
+        <h2>Edit a category</h2>
+        {{#entries}}
+        <form method="post" role="form">
+            <div class="form-group">
+                <label for="CatMenu" id="CatMenu" name="CatMenu">Old category menu</label>
+                <input type="text" class="form-control" value="{{catMenu}}" disabled>
+                <input type="hidden" id="CatMenu" name="CatMenu" value="{{catMenu}}">
+            </div>
+            <div class="form-group">
+                <label for="oldCatName" id="oldCatName" name="oldCatName">Old category name</label>
+                <input type="text" class="form-control" value="{{catName}}" disabled>
+                <input type="hidden" id="oldCatName" name="oldCatName" value="{{catName}}">
+            </div>
+            <div class="form-group">
+                <label for="newCatName">New category name</label>
+                <input type="text" class="form-control" id="newCatName" name="newCatName" placeholder="New category name" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit menu" class="btn btn-primary">
+            </div>
+        </form>
+        {{/entries}}
+    </body>
+    <footer>
+        {{>footer}}
+    </footer>
+        </div>
+       <script src="/js/admin.js"></script>
+</html>

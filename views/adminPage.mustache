@@ -67,10 +67,10 @@
   {{#entries}}
         {{#category}}
     <tr>
-    <td scope="row">{{catName}}</td>
-      <td>{{menuName}}</td>
-      <td><a href="/editCat/{{catName}}">edit</a></td>
-      <td><a href="/deleteCat/{{catName}}">delete</a></td>
+        <td scope="row">{{catName}}</td>
+        <td>{{menuName}}</td>
+        <td><a href="/editCat/{{menuName}}/{{catName}}">edit</a></td>
+        <td><a href="/deleteCat/{{menuName}}/{{catName}}">delete</a></td>
     </tr>
           {{/category}}
     {{/entries}}

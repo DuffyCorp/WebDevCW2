@@ -1,4 +1,4 @@
-const nedb = require("nedb");
+const nedb = require('@seald-io/nedb')
 const { resolve } = require("path");
 
 class Restaurant {
@@ -123,6 +123,25 @@ class Restaurant {
     });
   }
 
+  getMenu(menu) {
+    //return a Promise object, which can be resolved or rejected
+    return new Promise((resolve, reject) => {
+      //use the find() function of the database to get the data,
+      //error first callback function, err for error, entries for data
+      this.db.find({menuName: menu}, function (err, menus) {
+        //if error occurs reject Promise
+        if (err) {
+          reject(err);
+          //if no error resolve the promise & return the data
+        } else {
+          resolve(menus);
+          //to see what the returned data looks like
+          console.log("function edit Menu() returns: ", JSON.stringify(menus, null , 2));
+        }
+      });
+    });
+  }
+
   getMenusByName(searchName) {
     console.log(searchName)
     return new Promise((resolve, reject) => {
@@ -146,17 +165,55 @@ class Restaurant {
     console.log("entry created", entry);
     this.db.insert(entry, function (err, doc) {
       if (err) {
-        console.log("Error inserting document", subject);
+        console.log("Error inserting menu", subject);
       } else {
-        console.log("document inserted into the database", doc);
+        console.log("Menu inserted into the database", doc);
       }
     });
   }
 
-  editMenu(newMenuName) {
+  editMenu(oldMenuName,newMenuName) {
+    console.log(oldMenuName)
+    console.log(newMenuName)
+    this.db.update({menuName: oldMenuName},{$set:{'menuName':newMenuName}}, function (err, doc) {
+      if (err) {
+        console.log("Error updating menu", subject);
+      } else {
+        console.log("Menu updated inside the database", doc);
+      }
+    });
   }
 
-  deleteMenu(newMenuName) {
+  deleteMenu(MenuName) {
+    console.log(MenuName)
+    this.db.remove({menuName: MenuName},{multi: true}, function (err, doc) {
+      if (err) {
+        console.log("Error removing menu", subject);
+      } else {
+        console.log("Menu removed from the database", doc);
+      }
+    });
+  }
+
+
+
+  getCat(menu, Cat) {
+    //return a Promise object, which can be resolved or rejected
+    return new Promise((resolve, reject) => {
+      //use the find() function of the database to get the data,
+      //error first callback function, err for error, entries for data
+      this.db.find({menuName: menu, "category.catName": Cat},{'menuName': 1, 'category.catName': 1}, function (err, menus) {
+        //if error occurs reject Promise
+        if (err) {
+          reject(err);
+          //if no error resolve the promise & return the data
+        } else {
+          resolve(menus);
+          //to see what the returned data looks like
+          console.log("function edit Cat() returns: ", JSON.stringify(menus, null , 2));
+        }
+      });
+    });
   }
 
   addCat(selectMenuName, newCatName) {
@@ -176,7 +233,17 @@ class Restaurant {
     });
   }
 
-  editCat(selectMenuName, newCatName) {
+  editCat(MenuName, oldCatName, newCatName) {
+    console.log(MenuName)
+    console.log(oldCatName)
+    console.log(newCatName)
+    this.db.update({category: { $elemMatch: { catName: 'catName' } }},{$set:{'category.0.catName':newCatName}}, function (err, doc) {
+      if (err) {
+        console.log("Error updating menu", subject);
+      } else {
+        console.log("Menu updated inside the database", doc);
+      }
+    });
   }
 
   deleteCat(selectMenuName, newCatName) {
