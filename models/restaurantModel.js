@@ -1,4 +1,4 @@
-const nedb = require('@seald-io/nedb')
+const nedb = require('nedb')
 const { resolve } = require("path");
 
 class Restaurant {
@@ -250,8 +250,21 @@ class Restaurant {
     });
   }
 
-  deleteCat(selectMenuName, newCatName) {
+  deleteCat(MenuNameTarget, CatNameTarget) {
+    console.log(MenuNameTarget)
+    console.log(CatNameTarget)
+
+    this.db.update({ menuName: MenuNameTarget },{ $pull: { category: { catName: CatNameTarget } } }, function (err, doc) {
+      if (err) {
+        console.log("Error updating menu", subject);
+      } else {
+        console.log("Menu updated inside the database", doc);
+      }
+    });
   }
+
+
+
 
   addDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
     console.log(selectMenuName)
@@ -277,7 +290,33 @@ class Restaurant {
     });
   }
 
-  editDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
+  editDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, catIndex ,arrayIndex) {
+    console.log(selectMenuName)
+    console.log(dishCatName)
+    
+    var entry = {
+      name: dishName,
+      price: dishPrice,
+      vegetarian: dishVegetarian,
+      glutenFree: dishGlutenFree,
+      available: dishAvailable,
+    };
+    console.log("entry created", entry);
+
+    var index = parseInt(arrayIndex, 10)
+    console.log(index)
+
+    var index2 = parseInt(catIndex, 10)
+    console.log(index2)
+
+
+    this.db.update({menuName: selectMenuName, 'category.catName': dishCatName}, {$set: {[`category.${index}.dishes.${index2}`]: entry}},  function (err, doc) {
+      if (err) {
+        console.log("Error inserting document", subject);
+      } else {
+        console.log("document inserted into the database", doc);
+      }
+    });
   }
 
   deleteDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {

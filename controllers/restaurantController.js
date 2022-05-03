@@ -327,13 +327,9 @@ exports.show_delete_cat = function (req, res) {
 };
 
 exports.post_delete_cat = function (req, res) {
-  console.log(req.body.MenuName)
+  console.log(req.body.CatMenu, req.body.CatName, req.body.catIndex);
   console.log("processing post-delete_menu controller");
-  if (!req.body.MenuName) {
-    response.status(400).send("menus must have a name!.");
-    return;
-  }
-  db.deleteMenu(req.body.MenuName);
+  db.deleteCat(req.body.CatMenu, req.body.CatName);
   res.redirect("/admin");
 };
 
