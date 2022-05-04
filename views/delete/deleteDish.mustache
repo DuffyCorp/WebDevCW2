@@ -38,14 +38,36 @@
                         <label for="dishIndex">Dish price</label>
                         <input type="text" class="form-control {{name}}" name="dishPrice" value="{{price}}" disabled readonly="readonly">
 
-                        <label for="dishIndex">Dish vegetarian status</label>
-                        <input type="text" class="form-control {{name}}" name="vegetarian" value="{{vegetarian}}" disabled readonly="readonly">
+                        <label for="dishIndex">Dish description</label>
+                        <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled readonly="readonly">{{description}}</textarea>
+                        
+                        <input type="hidden" id="{{name}}DishVegetarian" value="{{vegetarian}}">
+                        <div id="vegetarian">
+                        <label for="dishIndex">Is the dish vegetarian?</label><br>
+                        <input type="radio" class="{{name}}" id="{{catName}}{{name}}vegetariantrue" name="vegetarian" value="true" required disabled>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}vegetarianfalse" name="vegetarian" value="false" disabled>
+                        <label for="false">No</label><br>
+                        </div>
 
-                        <label for="dishIndex">Dish gluten free status</label>
-                        <input type="text" class="form-control {{name}}" name="glutenFree" value="{{glutenFree}}" disabled readonly="readonly">
+                        <input type="hidden" id="{{name}}DishGluten" value="{{glutenFree}}">
+                        <div id="gluten">
+                        <label for="dishIndex">Is the dish gluten free?</label><br>
+                        <input type="radio" class="{{name}}" id="{{catName}}{{name}}glutentrue" name="glutenFree" value="true" required disabled>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}glutenfalse" name="glutenFree" value="false" disabled>
+                        <label for="false">No</label><br>
+                        </div>
 
-                        <label for="dishIndex">Dish availablitity status</label>
-                        <input type="text" class="form-control {{name}}" name="available" value="{{available}}" disabled readonly="readonly">
+
+                        <input type="hidden" id="{{name}}DishAvailable" value="{{available}}">
+                        <div id="available">
+                        <label>Is the dish available?</label><br>
+                        <input type="radio" class="{{name}}" id="{{catName}}{{name}}availabletrue" name="available" value="true" required disabled>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}availablefalse" name="available" value="false" disabled>
+                        <label for="false">No</label>
+                        </div>
 
                     </div>
                 {{/dishes}}
@@ -66,6 +88,10 @@
        <script>
         var category = "{{dishCatName}}"
         var dish = "{{selectDish}}"
+
+        $(':radio,:checkbox').click(function(){
+            return false;
+        });
 
         document.getElementById(category).disabled = false;
 
@@ -95,6 +121,18 @@
                 for (var i = 0; i < list.length; i++) {
                     list[i].value = (i);
                 };
+            
+            vegetarianStatus = document.getElementById(dish+"DishVegetarian").value;
+
+            document.getElementById(category+dish+"vegetarian"+vegetarianStatus).checked=true;
+
+            availableStatus = document.getElementById(dish+"DishAvailable").value;
+
+            document.getElementById(category+dish+"available"+availableStatus).checked=true;
+
+            glutenStatus = document.getElementById(dish+"DishGluten").value;
+
+            document.getElementById(category+dish+"gluten"+glutenStatus).checked=true;
 
             document.getElementById(dish+"Hidden").disabled = false;
 

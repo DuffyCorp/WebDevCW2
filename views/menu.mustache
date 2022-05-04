@@ -20,33 +20,44 @@
             <div class = "bodyContent" id="menus">
                 {{#menus}}
                     {{#category}}
-                        <h2>{{catName}}</h2>
+                    <div class="Category">
+                        <h2 style="text-align: center">{{catName}}</h2>
                             {{#dishes}}
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="card-title">
+                                <div class="dish Availability{{available}}">
+                                    <div class ="DishHeader">
+                                        <div class="DishTitle">
                                             <h4>{{name}}</h4>
                                         </div>
-                                        <p class="card-text">
-                                            Price: £{{price}} <br>
+                                        <div class = "DishSpecialtys">
+                                            <div class="circle {{glutenFree}}" style="background-color: orange;">
+                                                GF
+                                            </div>
+                                            <div class="circle {{vegetarian}}" style="background-color: green;">
+                                                V
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <p>
+                                            £{{price}} <br>
                                         </p>
-                                        <p class="card-text">
-                                            Description: {{description}} <br>
-                                        </p>
-                                        <div class="card-footer">
+                                        <h5>Dish Description: </h5>
+                                        <div class="description">
+                                            <p class="card-text">
+                                                {{description}} <br>
+                                            </p>
+                                        </div>
+                                        <div>
                                             {{#dishAllergies}}
                                                 <p>May contain: {{allergies}}</p>
                                             {{/dishAllergies}}
                                             {{^dishAllergies}}
                                                 <p>This dish contains no alergies</p>
                                             {{/dishAllergies}}
-                                            <p>is this dish gluten free: {{glutenFree}}</p>
-                                            <p>Is this dish available: {{available}}</p>
                                         </div> 
                                     </div>
-                                </div>
                             <br>
                             {{/dishes}}
+                        </div>
                         {{/category}}
                     {{/menus}}
                     {{^menus}}

@@ -26,29 +26,48 @@
                 <div id="{{catName}}Div" style="display: none">
                     <label for="oldCatName">Catagory name</label>
                     <input type="text" class="form-control {{catName}}" id="{{catName}}Text" value="{{catName}}" name="dishCategory" readonly="readonly" disabled>
-                    <input type="text" name="catIndex" id="{{catName}}" class ="categorys" disabled>
+                    <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
 
 
                 {{#dishes}}
                     <div id="{{name}}Div" style="display: none">
                         <label for="dishIndex">Dish name</label>
                         <input type="text" class="form-control {{name}}" name="dishName" value="{{name}}" disabled >
-                        <input type="text" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled>
+                        <input type="hidden" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled>
 
                         <label for="dishIndex">Dish price</label>
                         <input type="text" class="form-control {{name}}" name="dishPrice" value="{{price}}" disabled >
 
                         <label for="dishIndex">Dish description</label>
-                        <input type="textbox" class="form-control {{name}}" name="dishDescription" value="{{description}}" disabled >
+                        <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled >{{description}}</textarea>
+                        
+                        <input type="hidden" id="{{name}}DishVegetarian" value="{{vegetarian}}">
+                        <div id="vegetarian">
+                        <label for="dishIndex">Is the dish vegetarian?</label><br>
+                        <input type="radio" class="{{name}}" id="{{catName}}{{name}}vegetariantrue" name="vegetarian" value="true" required disabled>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}vegetarianfalse" name="vegetarian" value="false" disabled>
+                        <label for="false">No</label><br>
+                        </div>
 
-                        <label for="dishIndex">Dish vegetarian status</label>
-                        <input type="text" class="form-control {{name}}" name="vegetarian" value="{{vegetarian}}" disabled >
+                        <input type="hidden" id="{{name}}DishGluten" value="{{glutenFree}}">
+                        <div id="gluten">
+                        <label for="dishIndex">Is the dish gluten free?</label><br>
+                        <input type="radio" class="{{name}}" id="{{catName}}{{name}}glutentrue" name="glutenFree" value="true" required disabled>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}glutenfalse" name="glutenFree" value="false" disabled>
+                        <label for="false">No</label><br>
+                        </div>
 
-                        <label for="dishIndex">Dish gluten free status</label>
-                        <input type="text" class="form-control {{name}}" name="glutenFree" value="{{glutenFree}}" disabled >
 
-                        <label for="dishIndex">Dish availablitity status</label>
-                        <input type="text" class="form-control {{name}}" name="available" value="{{available}}" disabled>
+                        <input type="hidden" id="{{name}}DishAvailable" value="{{available}}">
+                        <div id="available">
+                        <label>Is the dish available?</label><br>
+                        <input type="radio" class="{{name}}" id="{{catName}}{{name}}availabletrue" name="available" value="true" required disabled>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}availablefalse" name="available" value="false" disabled>
+                        <label for="false">No</label>
+                        </div>
 
                     </div>
                 {{/dishes}}
@@ -94,6 +113,8 @@
         <script>
             var category = "{{dishCatName}}"
             var dish = "{{selectDish}}"
+
+            //document.getElementById(category+"Div").getElementsByClassName(dish).getElementById("available").getElementById(availableStatus).checked = true
     
             var divs = document.getElementById(dish+"Div");
                 divs.style.display=""
@@ -111,5 +132,28 @@
                 for (var i = 0; i < list.length; i++) {
                     list[i].disabled = false;
                 };
+
+            vegetarianStatus = document.getElementById(dish+"DishVegetarian").value;
+
+            document.getElementById(category+dish+"vegetarian"+vegetarianStatus).checked=true;
+
+            availableStatus = document.getElementById(dish+"DishAvailable").value;
+
+            document.getElementById(category+dish+"available"+availableStatus).checked=true;
+
+            glutenStatus = document.getElementById(dish+"DishGluten").value;
+
+            document.getElementById(category+dish+"gluten"+glutenStatus).checked=true;
+
+            availableDiv = document.getElementById("available");
+            for (var i = 0; i < availableDiv.length; i++) {
+                    availableDiv[i].getElementById(availableStatus).checked = true;
+                    console.log(i);
+                };
+
+            console.log("Test")
+
+            available.getElementById(availableStatus).checked = true;
+
         </script>
 </html>

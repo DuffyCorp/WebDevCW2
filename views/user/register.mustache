@@ -1,10 +1,23 @@
 <html>
-    <head>
-        {{>header}}
-    </head>
-    <body class="container">
-        <h1>{{title}}</h1>
-        <h2>New User Registration</h2>
+    <body>
+     <div class="wrapper">
+
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
+        <!-- Page Content  -->
+        <div id="content" style="width 100%">
+            {{>header}}
+
+        <div class="Hero">
+            <div class="heroText">
+                <h1>{{title}}</h1>
+                <h4>Resaurant Register Staff Page.</h4>
+            </div>
+        </div>
+            <div class = "bodyContent" id="menus">
+        <h2>Sign In</h2>
+        <div id="formContent">
         <form method="post" role="/register">
             <div class="form-group">
                 {{user-name-error}}
