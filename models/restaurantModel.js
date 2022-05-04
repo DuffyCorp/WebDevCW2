@@ -22,6 +22,7 @@ class Restaurant {
                 {
                   name: "Lentil soup",
                   price: 6.99,
+                  description: "Soup of the day",
                   vegetarian: true,
                   glutenFree: false,
                   available: true,
@@ -29,6 +30,7 @@ class Restaurant {
                 {
                   name: "Pate",
                   price: 5.99,
+                  description: "Chicken Pate",
                   vegetarian: false,
                   glutenFree: true,
                   available: true,
@@ -41,6 +43,7 @@ class Restaurant {
                 {
                   name: "Pizza",
                   price: 12.99,
+                  description: "Traditional Pizza",
                   vegetarian: true,
                   glutenFree: false,
                   available: true,
@@ -48,6 +51,7 @@ class Restaurant {
                 {
                   name: "Steak",
                   price: 18.99,
+                  description: "Ribeye Steak done to your preference",
                   vegetarian: false,
                   glutenFree: true,
                   available: true,
@@ -66,6 +70,7 @@ class Restaurant {
                 {
                   name: "Cheese toastie",
                   price: 5.99,
+                  description: "Classic cheddar cheese toastie",
                   vegetarian: true,
                   glutenFree: false,
                   available: true,
@@ -73,6 +78,7 @@ class Restaurant {
                 {
                   name: "Tomato soup",
                   price: 5.99,
+                  description: "Cream of Tomato Soup",
                   vegetarian: true,
                   glutenFree: false,
                   available: true,
@@ -85,6 +91,7 @@ class Restaurant {
                 {
                   name: "Burger",
                   price: 8.99,
+                  description: "With lettuce, tomato and onions",
                   vegetarian: false,
                   glutenFree: false,
                   available: true,
@@ -92,6 +99,7 @@ class Restaurant {
                 {
                   name: "Pasta",
                   price: 7.99,
+                  description: "With cheese sauce",
                   vegetarian: true,
                   glutenFree: false,
                   available: true,
@@ -266,12 +274,13 @@ class Restaurant {
 
 
 
-  addDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
+  addDish(selectMenuName, dishCatName, dishName, dishPrice, dishDescription ,dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
     console.log(selectMenuName)
     console.log(dishCatName)
     var entry = {
       name: dishName,
       price: dishPrice,
+      description: dishDescription,
       vegetarian: dishVegetarian,
       glutenFree: dishGlutenFree,
       available: dishAvailable,
@@ -290,13 +299,14 @@ class Restaurant {
     });
   }
 
-  editDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, catIndex ,arrayIndex) {
+  editDish(selectMenuName, dishCatName, dishName, dishPrice, dishDescription,dishVegetarian, dishGlutenFree, dishAvailable, catIndex ,arrayIndex) {
     console.log(selectMenuName)
     console.log(dishCatName)
-    
+
     var entry = {
       name: dishName,
       price: dishPrice,
+      description: dishDescription,
       vegetarian: dishVegetarian,
       glutenFree: dishGlutenFree,
       available: dishAvailable,
@@ -310,7 +320,7 @@ class Restaurant {
     console.log(index2)
 
 
-    this.db.update({menuName: selectMenuName, 'category.catName': dishCatName}, {$set: {[`category.${index}.dishes.${index2}`]: entry}},  function (err, doc) {
+    this.db.update({menuName: selectMenuName}, {$set: {[`category.${index}.dishes.${index2}`]: entry}},  function (err, doc) {
       if (err) {
         console.log("Error inserting document", subject);
       } else {
@@ -319,7 +329,18 @@ class Restaurant {
     });
   }
 
-  deleteDish(selectMenuName, dishCatName, dishName, dishPrice, dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex) {
+  deleteDish(MenuNameTarget, targetName, arrayIndex,) {
+
+    var index = parseInt(arrayIndex, 10)
+    console.log(index)
+
+    this.db.update({ menuName: MenuNameTarget },{ $pull: {[`category.${index}.dishes`]: {name: targetName } } }, function (err, doc) {
+      if (err) {
+        console.log("Error updating menu", subject);
+      } else {
+        console.log("Menu updated inside the database", doc);
+      }
+    });
   }
 
   //End of class

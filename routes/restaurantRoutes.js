@@ -52,12 +52,12 @@ router.get('/newDish',verify, controller.show_new_dish)
 router.post('/newDish',verify, controller.post_new_dish);
 
 //For edit Dishes
-router.get('/editDish/:name',verify, controller.show_edit_dish)
-router.post('/editDish/:name',verify, controller.post_edit_dish);
+router.get('/editDish/:menu/:cat/:dish',verify, controller.show_edit_dish)
+router.post('/editDish/:menu/:cat/:dish',verify, controller.post_edit_dish);
 
 //For delete Dishes
-router.get('/deleteDish/:name',verify, controller.show_delete_dish)
-router.post('/deleteDish/:name',verify, controller.post_delete_dish);
+router.get('/deleteDish/:menu/:cat/:dish',verify, controller.show_delete_dish)
+router.post('/deleteDish/:menu/:cat/:dish',verify, controller.post_delete_dish);
 
 
 

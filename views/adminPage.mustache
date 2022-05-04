@@ -89,8 +89,8 @@
   <thead>
     <tr>
         <th scope="col">Dish Name</th>
-        <th scope="col" class="hideNav">Menu Name</th>
         <th scope="col" class="hideNav">Category Name</th>
+        <th scope="col" class="hideNav">Menu Name</th>
         <th scope="col" class="hideNav">Available</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -102,11 +102,11 @@
   {{#dishes}}
     <tr>
         <td scope="row">{{name}}</td>
-        <td class="hideNav">{{menuName}}</td>
         <td class="hideNav">{{catName}}</td>
+        <td class="hideNav">{{menuName}}</td>
         <td class="hideNav">{{available}}</td>
-        <td><a href="/editDish/{{name}}">edit</a></td>
-        <td><a href="/deleteDish/{{name}}">delete</a></td>
+        <td><a href="/editDish/{{menuName}}/{{catName}}/{{name}}">edit</a></td>
+        <td><a href="/deleteDish/{{menuName}}/{{catName}}/{{name}}">delete</a></td>
     </tr>
     {{/dishes}}
     {{/category}}

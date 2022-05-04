@@ -1,0 +1,115 @@
+<html>
+    <body>
+     <div class="wrapper">
+
+        {{#user}}
+            {{>sidebar}}
+        {{/user}}
+        <!-- Page Content  -->
+        <div id="content" style="width 100%" class="{{admin}}">
+            {{>header}}
+
+        <div class="Hero">
+            <div class="heroText">
+                <h1>{{title}}</h1>
+            </div>
+        </div>
+            <div class = "bodyContent" id="menus">
+        <h2>Edit a dish</h2>
+        {{#entries}}
+        <form method="post" role="form">
+            <div class="form-group">
+                <label for="CatMenu">Menu name</label>
+                <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" name="selectMenuName" readonly="readonly">
+            </div>
+            {{#category}}
+                <div id="{{catName}}Div" style="display: none">
+                    <label for="oldCatName">Catagory name</label>
+                    <input type="text" class="form-control {{catName}}" id="{{catName}}Text" value="{{catName}}" name="dishCategory" readonly="readonly" disabled>
+                    <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
+
+
+                {{#dishes}}
+                    <div id="{{name}}Div" style="display: none">
+                        <label for="dishIndex">Dish name</label>
+                        <input type="text" class="form-control {{name}}" name="dishName" value="{{name}}" disabled >
+                        <input type="hidden" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled>
+
+                        <label for="dishIndex">Dish price</label>
+                        <input type="text" class="form-control {{name}}" name="dishPrice" value="{{price}}" disabled >
+
+                        <label for="dishIndex">Dish description</label>
+                        <input type="textbox" class="form-control {{name}}" name="dishDescription" value="{{description}}" disabled >
+
+                        <label for="dishIndex">Dish vegetarian status</label>
+                        <input type="text" class="form-control {{name}}" name="vegetarian" value="{{vegetarian}}" disabled >
+
+                        <label for="dishIndex">Dish gluten free status</label>
+                        <input type="text" class="form-control {{name}}" name="glutenFree" value="{{glutenFree}}" disabled >
+
+                        <label for="dishIndex">Dish availablitity status</label>
+                        <input type="text" class="form-control {{name}}" name="available" value="{{available}}" disabled>
+
+                    </div>
+                {{/dishes}}
+                </div>
+            {{/category}}
+        {{/entries}}
+
+            <input type = hidden name="CatMenu" value="{{dishMenu}}">
+
+            <input type = hidden name="oldCatName" value="{{dishCatName}}">
+
+            <input type = hidden name="oldCatName" value="{{selectDish}}">
+
+            <div class="form-group">
+                <input type="submit" value="Edit dish" class="btn btn-primary">
+            </div>
+        </form>
+    </body>
+    <footer>
+        {{>footer}}
+    </footer>
+        </div>
+       <script src="/js/admin.js"></script>
+       <script>
+        var category = "{{dishCatName}}"
+        var dish = "{{selectDish}}"
+
+        document.getElementById(category).disabled = false;
+
+        document.getElementById(category+"Text").disabled = false;
+
+        var choices = document.getElementById(category+"Div");
+            choices.style.display="";
+            
+
+        var list = document.getElementsByClassName("categorys");
+            for (var i = 0; i < list.length; i++) {
+                list[i].value = (i);
+            };
+
+       </script>
+
+        <script>
+            var category = "{{dishCatName}}"
+            var dish = "{{selectDish}}"
+    
+            var divs = document.getElementById(dish+"Div");
+                divs.style.display=""
+
+            var div = document.getElementsByClassName(dish)
+
+            var list = document.getElementById(category+"Div").getElementsByClassName("dishes");
+                for (var i = 0; i < list.length; i++) {
+                    list[i].value = (i);
+                };
+
+            document.getElementById(dish+"Hidden").disabled = false;
+
+            var list = document.getElementById(category+"Div").getElementsByClassName(dish);
+                for (var i = 0; i < list.length; i++) {
+                    list[i].disabled = false;
+                };
+        </script>
+</html>
