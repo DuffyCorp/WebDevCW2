@@ -26,14 +26,14 @@
                 <div id="{{catName}}Div" style="display: none">
                     <label for="oldCatName">Catagory name</label>
                     <input type="text" class="form-control {{catName}}" id="{{catName}}Text" value="{{catName}}" name="dishCategory" readonly="readonly" disabled>
-                    <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
+                    <input type="text" name="catIndex" id="{{catName}}" class ="categorys" disabled>
 
 
                 {{#dishes}}
                     <div id="{{name}}Div" style="display: none">
                         <label for="dishIndex">Dish name</label>
                         <input type="text" class="form-control {{name}}" name="dishName" value="{{name}}" disabled >
-                        <input type="hidden" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled>
+                        <input type="text" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled>
 
                         <label for="dishIndex">Dish price</label>
                         <input type="text" class="form-control {{name}}" name="dishPrice" value="{{price}}" disabled >

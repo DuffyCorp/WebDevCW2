@@ -313,10 +313,10 @@ class Restaurant {
     };
     console.log("entry created", entry);
 
-    var index = parseInt(arrayIndex, 10)
+    var index = parseInt(catIndex, 10)
     console.log(index)
 
-    var index2 = parseInt(catIndex, 10)
+    var index2 = parseInt(arrayIndex, 10)
     console.log(index2)
 
 
