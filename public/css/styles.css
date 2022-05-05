@@ -447,14 +447,17 @@ a.fillCard {
 @media (max-width: 768px) {
 .Category{
   width: 95%;
+  padding: 5px;
 }
 
 .dish{
   width: 90%;
+  padding: 5px
 }
 
 .description{
   width: 90%;
+  padding: 5px
 }
 
   .menuContainer {
