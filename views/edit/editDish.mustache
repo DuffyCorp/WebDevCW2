@@ -42,9 +42,14 @@
                         <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled >{{description}}</textarea>
                         
                         <label for="show">Does the dish contain allergies?</label>
-                        <input type="checkbox" id="{{catName}}{{name}}show" name="show" />
+                        {{#allergies}}
+                            <input type="checkbox" id="{{catName}}{{name}}show" name="show" checked/>
+                        {{/allergies}}
+                        {{^allergies}}
+                            <input type="checkbox" id="{{catName}}{{name}}show" name="show" />
+                        {{/allergies}}
 
-                        <div class="form-group" id="{{catName}}{{name}}allergies" style="display: none">
+                        <div class="form-group" id="{{catName}}{{name}}allergies" style="{{^allergies}}display: none{{/allergies}}">
                             <label for="dishPrice">New dish allergens</label>
                             <textarea class="form-control {{name}}" rows="4" id="{{catName}}{{name}}dishAllergies" name="dishAllergies" style="resize:none" disabled>{{allergies}}
                             </textarea>
