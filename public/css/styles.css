@@ -457,7 +457,8 @@ a.fillCard {
 
 .description{
   width: 90%;
-  padding: 5px
+  margin: 0 auto;
+  padding: 5px;
 }
 
   .menuContainer {
