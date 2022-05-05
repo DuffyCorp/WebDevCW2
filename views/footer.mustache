@@ -9,7 +9,12 @@
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2022 Copyright:
-    <a href="http://localhost:3000/"> Jack Duffy</a>
+  {{#user}}
+    <a href="/LoggedIn"> Jack Duffy</a>
+  {{/user}}
+  {{^user}}
+    <a href="/"> Jack Duffy</a>
+  {{/user}}
   </div>
   <!-- Copyright -->
 
