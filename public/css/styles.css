@@ -341,6 +341,9 @@ a.fillCard {
   margin-bottom: 40px;
   width: 75%;
   padding: 40px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000;
 }
 
 .dish {
@@ -348,6 +351,9 @@ a.fillCard {
   padding: 20px;
   background-color: #f7f7f7;
   width: 75%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000;
 }
 
 .description {
@@ -355,6 +361,9 @@ a.fillCard {
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000;
 }
 
 .circle {

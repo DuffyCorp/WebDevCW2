@@ -112,7 +112,11 @@ exports.post_new_entry = function (req, res) {
     response.status(400).send("entries must have an dishName.");
     return;
   }
-  db.addEntry(req.body.dishName, req.body.dishPrice, req.body.dishCategory, req.body.dishAllergies, req.body.vegetarian, req.body.glutenFree, req.body.menuName, req.body.available );
+  if (req.body.dishAllergies != ''){
+    db.addEntry(req.body.dishName, req.body.dishPrice, req.body.dishCategory, req.body.dishAllergies, req.body.vegetarian, req.body.glutenFree, req.body.menuName, req.body.available, req.body.dishAllergies);
+  }else{
+    db.addEntry(req.body.dishName, req.body.dishPrice, req.body.dishCategory, req.body.dishAllergies, req.body.vegetarian, req.body.glutenFree, req.body.menuName, req.body.available );
+  }
   res.redirect("/admin");
 };
 
@@ -358,7 +362,11 @@ exports.post_new_dish = function (req, res) {
     response.status(400).send("Category must have a name!.");
     return;
   }
-  db.addDish(req.body.selectMenuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.dishDescription, req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.arrayIndex);
+  if(req.body.dishAllergies != ''){
+    db.addDishAllergic(req.body.selectMenuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.dishDescription, req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.arrayIndex, req.body.dishAllergies);
+  }else{
+    db.addDish(req.body.selectMenuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.dishDescription, req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.arrayIndex);
+  }
   res.redirect("/admin");
 };
 
@@ -396,7 +404,11 @@ exports.post_edit_dish = function (req, res) {
     response.status(400).send("menus must have a name!.");
     return;
   }
+  if(req.body.dishAllergies != ''){
+    db.editDishAllergies(req.body.selectMenuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.dishDescription,req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.catIndex, req.body.dishIndex, req.body.dishAllergies);
+  }else{
   db.editDish(req.body.selectMenuName, req.body.dishCategory, req.body.dishName, req.body.dishPrice, req.body.dishDescription,req.body.vegetarian, req.body.glutenFree, req.body.available, req.body.catIndex, req.body.dishIndex);
+  }
   res.redirect("/admin");
 };
 

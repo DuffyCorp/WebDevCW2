@@ -42,17 +42,17 @@
                                         </p>
                                         <h5>Dish Description: </h5>
                                         <div class="description">
-                                            <p class="card-text">
+                                            <p>
                                                 {{description}} <br>
                                             </p>
                                         </div>
                                         <div>
-                                            {{#dishAllergies}}
-                                                <p>May contain: {{allergies}}</p>
-                                            {{/dishAllergies}}
-                                            {{^dishAllergies}}
+                                            {{#allergies}}
+                                                <p>Allergies: {{allergies}}</p>
+                                            {{/allergies}}
+                                            {{^allergies}}
                                                 <p>This dish contains no alergies</p>
-                                            {{/dishAllergies}}
+                                            {{/allergies}}
                                         </div> 
                                     </div>
                             <br>

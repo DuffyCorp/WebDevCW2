@@ -75,6 +75,15 @@
                             </textarea>
                         </div>
 
+                        <label for="show">Does the dish contain allergies?</label>
+                        <input type="checkbox" id="show" name="show" />
+
+                        <div class="form-group" id="allergies" style="display: none">
+                            <label for="dishPrice">New dish allergens</label>
+                            <textarea class="form-control" rows="4" id="dishAllergies" name="dishAllergies" style="resize:none" required>
+                            </textarea>
+                        </div>
+
                         <div class="form-group">
                     
                             <label> Is this dish vegetarian?</label><br>
@@ -114,15 +123,32 @@
                 </div>
             </div>
     </body>
-    <footer>
+        </div>
+            <footer>
 
         {{>footer}}
 
     </footer>
-        </div>
        <script src="/js/admin.js"></script>
 
         <script>
+            const checkbox = document.getElementById('show');
+
+            const box = document.getElementById('allergies');
+
+            const allergies = document.getElementById("dishAllergies");
+
+            checkbox.addEventListener('click', function handleClick() {
+            if (checkbox.checked) {
+                box.style.display = 'block';
+                allergies.disabled = false;
+            } else {
+                box.style.display = 'none';
+                allergies.disabled = true;
+            }
+            }); 
+
+
             document.addEventListener("DOMContentLoaded", function() {
  
                 let select = document.getElementById('selectMenuName');

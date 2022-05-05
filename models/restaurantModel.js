@@ -80,7 +80,7 @@ class Restaurant {
                   price: 5.99,
                   description: "Cream of Tomato Soup",
                   vegetarian: true,
-                  glutenFree: false,
+                  glutenFree: true,
                   available: true,
                 },
               ],
@@ -299,6 +299,32 @@ class Restaurant {
     });
   }
 
+  addDishAllergic(selectMenuName, dishCatName, dishName, dishPrice, dishDescription ,dishVegetarian, dishGlutenFree, dishAvailable, arrayIndex, dishAllergies) {
+    console.log(selectMenuName)
+    console.log(dishCatName)
+    var entry = {
+      name: dishName,
+      price: dishPrice,
+      description: dishDescription,
+      allergies: dishAllergies,
+      vegetarian: dishVegetarian,
+      glutenFree: dishGlutenFree,
+      available: dishAvailable,
+    };
+    console.log("entry created", entry);
+
+    var index = parseInt(arrayIndex, 10)
+    console.log(index)
+
+    this.db.update({menuName: selectMenuName, 'category.catName': dishCatName}, {$addToSet: {[`category.${index}.dishes`]: entry}}, {upsert: true},  function (err, doc) {
+      if (err) {
+        console.log("Error inserting document", subject);
+      } else {
+        console.log("document inserted into the database", doc);
+      }
+    });
+  }
+
   editDish(selectMenuName, dishCatName, dishName, dishPrice, dishDescription,dishVegetarian, dishGlutenFree, dishAvailable, catIndex ,arrayIndex) {
     console.log(selectMenuName)
     console.log(dishCatName)
@@ -307,6 +333,37 @@ class Restaurant {
       name: dishName,
       price: dishPrice,
       description: dishDescription,
+      vegetarian: dishVegetarian,
+      glutenFree: dishGlutenFree,
+      available: dishAvailable,
+    };
+    console.log("entry created", entry);
+
+    var index = parseInt(catIndex, 10)
+    console.log(index)
+
+    var index2 = parseInt(arrayIndex, 10)
+    console.log(index2)
+
+
+    this.db.update({menuName: selectMenuName}, {$set: {[`category.${index}.dishes.${index2}`]: entry}},  function (err, doc) {
+      if (err) {
+        console.log("Error inserting document", subject);
+      } else {
+        console.log("document inserted into the database", doc);
+      }
+    });
+  }
+
+  editDishAllergies(selectMenuName, dishCatName, dishName, dishPrice, dishDescription,dishVegetarian, dishGlutenFree, dishAvailable, catIndex ,arrayIndex, dishAllergies) {
+    console.log(selectMenuName)
+    console.log(dishCatName)
+
+    var entry = {
+      name: dishName,
+      price: dishPrice,
+      description: dishDescription,
+      allergies: dishAllergies,
       vegetarian: dishVegetarian,
       glutenFree: dishGlutenFree,
       available: dishAvailable,

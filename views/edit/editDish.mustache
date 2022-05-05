@@ -41,6 +41,15 @@
                         <label for="dishIndex">Dish description</label>
                         <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled >{{description}}</textarea>
                         
+                        <label for="show">Does the dish contain allergies?</label>
+                        <input type="checkbox" id="{{catName}}{{name}}show" name="show" />
+
+                        <div class="form-group" id="{{catName}}{{name}}allergies" style="display: none">
+                            <label for="dishPrice">New dish allergens</label>
+                            <textarea class="form-control {{name}}" rows="4" id="{{catName}}{{name}}dishAllergies" name="dishAllergies" style="resize:none" disabled>{{allergies}}
+                            </textarea>
+                        </div>
+
                         <input type="hidden" id="{{name}}DishVegetarian" value="{{vegetarian}}">
                         <div id="vegetarian">
                         <label for="dishIndex">Is the dish vegetarian?</label><br>
@@ -86,14 +95,32 @@
             </div>
         </form>
     </body>
-    <footer>
+        </div>
+            <footer>
         {{>footer}}
     </footer>
-        </div>
        <script src="/js/admin.js"></script>
        <script>
-        var category = "{{dishCatName}}"
-        var dish = "{{selectDish}}"
+            var category = "{{dishCatName}}"
+            var dish = "{{selectDish}}"
+
+
+            const checkbox = document.getElementById(category+dish+'show');
+
+            const box = document.getElementById(category+dish+'allergies');
+
+            const allergies = document.getElementById(category+dish+"dishAllergies");
+
+            checkbox.addEventListener('click', function handleClick() {
+            if (checkbox.checked) {
+                box.style.display = 'block';
+                allergies.disabled = false;
+            } else {
+                box.style.display = 'none';
+                allergies.disabled = true;
+            }
+            }); 
+
 
         document.getElementById(category).disabled = false;
 
