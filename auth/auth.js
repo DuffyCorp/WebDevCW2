@@ -21,7 +21,7 @@ exports.login = function (req, res, next) {
         let payload = { username: user.username };
         //create the access token
         let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
-          expiresIn: 300,
+          expiresIn: 600,
         });
         res.cookie("jwt", accessToken);
         next();

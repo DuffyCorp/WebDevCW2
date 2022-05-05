@@ -114,6 +114,35 @@
   </tbody>
 </table>
 </div>
+
+
+
+<div id="editStaff" class="adminTable">
+<div class ="tableHeader">
+<h1>Edit Staff</h1>
+    <div class="text-center py-3">
+        <a id="login" href="/register" class="btn btn-primary">Add staff</a>
+    </div>
+    </div>
+        <table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">Staff username</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#staff}}
+    <tr>
+        <td scope="row">{{user}}</td>
+        <td><a href="/editStaff/{{user}}">edit</a></td>
+        <td><a href="/deleteStaff/{{user}}">delete</a></td>
+    </tr>
+    {{/staff}}
+  </tbody>
+</table>
+</div>
     </body>
         </div>
         <footer>

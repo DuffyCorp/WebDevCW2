@@ -53,19 +53,80 @@ exports.loggedIn_landing = function (req, res) {
 };
 
 exports.admin_page = function (req, res) {
+  userDao.getAllStaff().then((userList) => {
   db.getAllMenus()
     .then((list) => {
       res.render("adminPage", {
         title: "Admin Page",
         admin: "active",
+        staff: userList,
         user: "user",
         entries: list,
       });
     })
+  })
     .catch((err) => {
       console.log("promise rejected", err);
     });
 };
+
+exports.show_edit_user = function (req, res) {
+  let staff = req.params.name
+  db.getAllMenus().then(list => { 
+    userDao.getStaffMember(staff)
+      .then((staffList) => {
+        res.render("user/editStaff", {
+          title: staff,
+          menu: "active",
+          user: "user",
+          staff: staffList,
+          entries: list
+        });
+      })
+      })
+      .catch((err) => {
+        console.log("Error: ");
+        console.log(JSON.stringify(err));
+      });
+}
+
+exports.post_edit_user = function (req, res) {
+  console.log("processing post-edit_user controller");
+  if (!req.body.newUserPassword) {
+    response.status(400).send("User must have a new password.");
+    return;
+  }
+  userDao.editStaff(req.body.staffUserName, req.body.newUserPassword);
+  res.redirect("/admin");
+}
+
+exports.show_delete_user = function (req, res) {
+  let staff = req.params.name
+  db.getAllMenus().then(list => { 
+    userDao.getStaffMember(staff)
+      .then((staffList) => {
+        res.render("user/deleteStaff", {
+          title: staff,
+          menu: "active",
+          user: "user",
+          staff: staffList,
+          entries: list
+        });
+      })
+      })
+      .catch((err) => {
+        console.log("Error: ");
+        console.log(JSON.stringify(err));
+      });
+}
+
+exports.post_delete_user = function (req, res) {
+  console.log("processing post-edit_user controller");
+
+  userDao.deleteStaff(req.body.staffUserName);
+
+  res.redirect("/admin");
+}
 
 exports.logged_show_user_entries = function (req, res) {
   let menu = req.params.name;

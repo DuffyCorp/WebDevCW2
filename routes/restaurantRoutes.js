@@ -65,6 +65,14 @@ router.post('/deleteDish/:menu/:cat/:dish',verify, controller.post_delete_dish);
 router.get('/admin/register',verify, controller.show_register_page);
 router.post('/admin/register',verify, controller.post_new_user);
 
+//Edit staff
+router.get('/editStaff/:name',verify, controller.show_edit_user);
+router.post('/editStaff/:name',verify, controller.post_edit_user);
+
+//Delete staff
+router.get('/deleteStaff/:name',verify, controller.show_delete_user);
+router.post('/deleteStaff/:name',verify, controller.post_delete_user);
+
 //show admin page
 router.get("/admin",verify, controller.admin_page);
 
