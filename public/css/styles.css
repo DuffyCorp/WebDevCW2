@@ -445,6 +445,18 @@ a.fillCard {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
+.Category{
+  width: 95%;
+}
+
+.dish{
+  width: 90%;
+}
+
+.description{
+  width: 90%;
+}
+
   .menuContainer {
     flex-direction: column;
     padding-left: 20px;
