@@ -16,7 +16,7 @@
         </div>
             <div class = "bodyContent" id="menus">
         <h2>Edit a dish</h2>
-        {{#entries}}
+        {{#items}}
         <form method="post" role="form">
             <div class="form-group">
                 <label for="CatMenu">Menu name</label>
@@ -87,7 +87,7 @@
                 {{/dishes}}
                 </div>
             {{/category}}
-        {{/entries}}
+        {{/items}}
 
             <input type = hidden name="CatMenu" value="{{dishMenu}}">
 

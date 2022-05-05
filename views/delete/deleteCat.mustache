@@ -16,7 +16,7 @@
         </div>
             <div class = "bodyContent" id="menus">
         <h2>Delete a category</h2>
-        {{#entries}}
+        {{#items}}
         <form method="post" role="form">
             <div class="form-group">
                 <label for="CatMenu">Category menu</label>
@@ -29,7 +29,7 @@
                 <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
             </div>
             {{/category}}
-            {{/entries}}
+            {{/items}}
 
             <input type = hidden name="CatMenu" value="{{catMenu}}">
 

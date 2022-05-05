@@ -191,16 +191,19 @@ exports.post_new_menu = function (req, res) {
 
 exports.show_edit_menu = function (req, res) {
   menu = req.params.name
-  db.getMenu(menu)
+  db.getAllMenus().then((menus) =>{
+    db.getMenu(menu)
     .then((list) => {
       res.render("edit/editMenu", {
         title: "Restaurant webApp",
-        entries: list,
+        entries: menus,
+        items: list,
         user: "user",
         admin: "active",
       });
       console.log("promise resolved");
     })
+  })
     .catch((err) => {
       console.log("promise rejected", err);
     });
@@ -219,16 +222,19 @@ exports.post_edit_menu = function (req, res) {
 
 exports.show_delete_menu = function (req, res) {
   menu = req.params.name
-  db.getMenu(menu)
+  db.getAllMenus().then((menus) =>{
+    db.getMenu(menu)
     .then((list) => {
       res.render("delete/deleteMenu", {
         title: "Restaurant webApp",
-        entries: list,
+        entries: menus,
+        items: list,
         user: "user",
         admin: "active",
       });
       console.log("promise resolved");
     })
+  })
     .catch((err) => {
       console.log("promise rejected", err);
     });
@@ -280,11 +286,13 @@ exports.show_edit_cat = function (req, res) {
 
   console.log(menu)
   console.log(cat)
-  db.getMenu(menu)
+  db.getAllMenus().then((menus) =>{
+    db.getMenu(menu)
     .then((list) => {
       res.render("edit/editCat", {
         title: "Restaurant webApp",
-        entries: list,
+        entries: menus,
+        items: list,
         user: "user",
         admin: "active",
         catMenu: menu,
@@ -292,6 +300,7 @@ exports.show_edit_cat = function (req, res) {
       });
       console.log("promise resolved");
     })
+  })
     .catch((err) => {
       console.log("promise rejected", err);
     });
@@ -314,17 +323,20 @@ exports.show_delete_cat = function (req, res) {
 
   console.log(menu)
   console.log(cat)
-  db.getMenu(menu)
+  db.getAllMenus().then((menus) =>{
+    db.getMenu(menu)
     .then((list) => {
       res.render("delete/deleteCat", {
         title: "Restaurant webApp",
-        entries: list,
+        entries: menus,
+        items: list,
         user: "user",
         admin: "active",
         catMenu: menu,
         selectCatName: cat,
       });
     })
+  })
     .catch((err) => {
       console.log("promise rejected", err);
     });
@@ -379,11 +391,13 @@ exports.show_edit_dish = function (req, res) {
   console.log(cat)
   console.log(dish)
 
+  db.getAllMenus().then((menus) =>{
   db.getMenu(menu)
   .then((list) => {
     res.render("edit/editDish", {
       title: "Restaurant webApp",
-      entries: list,
+      entries: menus,
+      items: list,
       user: "user",
       admin: "active",
       dishMenu: menu,
@@ -392,6 +406,7 @@ exports.show_edit_dish = function (req, res) {
     });
     console.log("promise resolved");
   })
+})
   .catch((err) => {
     console.log("promise rejected", err);
   });
@@ -421,11 +436,13 @@ exports.show_delete_dish = function (req, res) {
   console.log(cat)
   console.log(dish)
 
-  db.getMenu(menu)
-  .then((list) => {
+  db.getAllMenus().then((menus) =>{
+    db.getMenu(menu)
+    .then((list) => {
     res.render("delete/deleteDish", {
       title: "Restaurant webApp",
-      entries: list,
+      entries: menus,
+      items: list,
       user: "user",
       admin: "active",
       dishMenu: menu,
@@ -434,6 +451,7 @@ exports.show_delete_dish = function (req, res) {
     });
     console.log("promise resolved");
   })
+})
   .catch((err) => {
     console.log("promise rejected", err);
     });

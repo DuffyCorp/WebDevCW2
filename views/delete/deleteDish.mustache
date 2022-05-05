@@ -16,7 +16,7 @@
         </div>
             <div class = "bodyContent" id="menus">
         <h2>Delete a dish</h2>
-        {{#entries}}
+        {{#items}}
         <form method="post" role="form">
             <div class="form-group">
                 <label for="CatMenu">Menu name</label>
@@ -41,6 +41,14 @@
                         <label for="dishIndex">Dish description</label>
                         <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled readonly="readonly">{{description}}</textarea>
                         
+                        {{#allergies}}
+                        <div class="form-group" id="{{catName}}{{name}}allergies" style="{{^allergies}}display: none{{/allergies}}">
+                            <label for="dishPrice">New dish allergens</label>
+                            <textarea class="form-control {{name}}" rows="4" id="{{catName}}{{name}}dishAllergies" name="dishAllergies" style="resize:none" disabled readonly="readonly">{{allergies}}
+                            </textarea>
+                        </div>
+                        {{/allergies}}
+
                         <input type="hidden" id="{{name}}DishVegetarian" value="{{vegetarian}}">
                         <div id="vegetarian">
                         <label for="dishIndex">Is the dish vegetarian?</label><br>
@@ -73,7 +81,7 @@
                 {{/dishes}}
                 </div>
             {{/category}}
-        {{/entries}}
+        {{/items}}
 
             <div class="form-group">
                 <input type="submit" value="Delete dish" class="btn btn-primary">
