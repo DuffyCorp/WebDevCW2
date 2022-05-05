@@ -11,6 +11,6 @@ This project includes the following features
 
 ## Installation and setup
 
-1. git clone ''
+1. git clone https://github.com/DuffyCorp/WebDevCW2.git
 2. npm install
 3. node index
