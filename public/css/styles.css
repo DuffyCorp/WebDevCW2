@@ -461,6 +461,11 @@ a.fillCard {
   padding: 5px;
 }
 
+.circle{
+  width: 25px;
+  height: 25px;
+}
+
   .menuContainer {
     flex-direction: column;
     padding-left: 20px;
