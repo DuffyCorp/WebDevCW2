@@ -22,7 +22,8 @@
   <!-- Menu choice -->
   <div class="form-outline mb-4">
     <label class="form-label" for="form2Example1">Choose menu</label>
-    <select type="text" class="form-control" name="menuName" id="menuName">
+    <select type="text" class="form-control" name="menuName" id="menuName" required>
+    <option value="Choose Menu">{{menuName}}</option disabled>
         {{#entries}}
             <option value="{{menuName}}">{{menuName}}</option>
         {{/entries}}
