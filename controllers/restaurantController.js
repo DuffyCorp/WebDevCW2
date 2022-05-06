@@ -3,17 +3,6 @@ const userDao = require("../models/userModel.js");
 const db = new restaurantDAO();
 db.init();
 
-exports.about = function (req, res) {
-  res.render("about");
-};
-
-exports.aboutAdmin = function (req, res) {
-  res.render("about", {
-    title: "About Page",
-    user: "user",
-  });
-};
-
 exports.not_found = function (req, res) {
   res.render("errors/404");
 };

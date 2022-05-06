@@ -14,25 +14,32 @@
                 <h1>{{title}}</h1>
             </div>
         </div>
-            <div class = "bodyContent" id="menus">
+            <div class = "bodyContent" id="menus" style="text-align: center;">
         <h2>Edit a menu</h2>
         {{#items}}
-        <form method="post" role="form">
-            <div class="form-group">
-                <label for="newMenuName" id="oldMenuName" name="oldMenuName">Old menu name</label>
-                <input type="text" class="form-control" value="{{menuName}}" disabled>
-                <input type="hidden" id="oldMenuName" name="oldMenuName" value="{{menuName}}">
-            </div>
-            <div class="form-group">
-                <label for="newMenuName">New menu name</label>
-                <input type="text" class="form-control" id="newMenuName" name="newMenuName" placeholder="New menu name" required>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Edit menu" class="btn btn-primary">
-            </div>
-        </form>
+                    <div class="login">
+            <div class="AdminForm">
+            <form method="post" role="form">
+  <!-- Old menu -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example1">Old menu name</label>
+    <input type="text" class="form-control" value="{{menuName}}" disabled>
+    <input type="hidden" id="oldMenuName" name="oldMenuName" value="{{menuName}}">
+  </div>
+
+  <!-- new menu input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example2">New menu name</label>
+    <input type="text" class="form-control" id="newMenuName" name="newMenuName" placeholder="New menu name" required>
+  </div>
+
+  <!-- Submit button -->
+  <input type="submit" value="Edit menu" class="btn btn-primary">
+</form>
         {{/items}}
     </body>
+        </div>
+        </div>
         </div>
             <footer>
         {{>footer}}

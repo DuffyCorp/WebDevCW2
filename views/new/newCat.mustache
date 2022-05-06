@@ -14,26 +14,33 @@
                 <h1>{{title}}</h1>
             </div>
         </div>
-            <div class = "bodyContent" id="menus">
+            <div class = "bodyContent" id="menus" style="text-align: center">
         <h2>Create a new category</h2>
-        <form method="post" role="form">
-            <div class="form-group">
-                <label for="menuName">Choose a menu:</label>
-                <select type="text" class="form-control" name="menuName" id="menuName">
-                {{#entries}}
-                    <option value="{{menuName}}">{{menuName}}</option>
-                {{/entries}}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="newCatName">New category name:</label>
+                           <div class="login">
+            <div class="AdminForm">
+            <form method="post" role="form">
+  <!-- Menu choice -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example1">Choose menu</label>
+    <select type="text" class="form-control" name="menuName" id="menuName">
+        {{#entries}}
+            <option value="{{menuName}}">{{menuName}}</option>
+        {{/entries}}
+    </select>
+  </div>
+
+  <!-- new cat input -->
+  <div class="form-outline mb-4">
+    <label for="newCatName">New category name:</label>
                 <input type="text" class="form-control" id="newCatName" name="newCatName" placeholder="Category name" required>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Add category" class="btn btn-primary">
-            </div>
-        </form>
+  </div>
+
+  <!-- Submit button -->
+  <input type="submit" value="Add category" class="btn btn-primary">
+</form>
     </body>
+        </div>
+        </div>
         </div>
             <footer>
         {{>footer}}

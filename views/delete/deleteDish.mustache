@@ -16,40 +16,56 @@
         </div>
             <div class = "bodyContent" id="menus">
         <h2>Delete a dish</h2>
+                                                               <div class="login">
+            <div class="AdminForm">
         {{#items}}
         <form method="post" role="form">
+            <div class="form-outline mb-4">
             <div class="form-group">
                 <label for="CatMenu">Menu name</label>
                 <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" name="selectMenuName" readonly="readonly">
             </div>
+            </div>
             {{#category}}
                 <div id="{{catName}}Div" style="display: none">
+                <div class="form-outline mb-4">
                     <label for="oldCatName">Catagory name</label>
                     <input type="text" class="form-control {{catName}}" id="{{catName}}Text" value="{{catName}}" name="dishCategory" readonly="readonly" disabled>
                     <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
-
+                </div>
 
                 {{#dishes}}
                     <div id="{{name}}Div" style="display: none">
+
+                    <div class="form-outline mb-4">
                         <label for="dishIndex">Dish name</label>
                         <input type="text" class="form-control {{name}}" name="dishName" value="{{name}}" disabled readonly="readonly">
                         <input type="hidden" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled readonly="readonly">
+                    </div>
 
+                    <div class="form-outline mb-4">
                         <label for="dishIndex">Dish price</label>
                         <input type="text" class="form-control {{name}}" name="dishPrice" value="{{price}}" disabled readonly="readonly">
+                    </div>
 
+                    <div class="form-outline mb-4">
                         <label for="dishIndex">Dish description</label>
                         <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled readonly="readonly">{{description}}</textarea>
-                        
+                    </div>
+
                         {{#allergies}}
+                        <div class="form-outline mb-4">
                         <div class="form-group" id="{{catName}}{{name}}allergies" style="{{^allergies}}display: none{{/allergies}}">
                             <label for="dishPrice">New dish allergens</label>
                             <textarea class="form-control {{name}}" rows="4" id="{{catName}}{{name}}dishAllergies" name="dishAllergies" style="resize:none" disabled readonly="readonly">{{allergies}}
                             </textarea>
                         </div>
+                        </div>
                         {{/allergies}}
 
                         <input type="hidden" id="{{name}}DishVegetarian" value="{{vegetarian}}">
+
+                        <div class="form-outline mb-4">
                         <div id="vegetarian">
                         <label for="dishIndex">Is the dish vegetarian?</label><br>
                         <input type="radio" class="{{name}}" id="{{catName}}{{name}}vegetariantrue" name="vegetarian" value="true" required disabled>
@@ -57,8 +73,11 @@
                         <input type="radio" class="{{name}}"id="{{catName}}{{name}}vegetarianfalse" name="vegetarian" value="false" disabled>
                         <label for="false">No</label><br>
                         </div>
+                        </div>
 
                         <input type="hidden" id="{{name}}DishGluten" value="{{glutenFree}}">
+
+                        <div class="form-outline mb-4">
                         <div id="gluten">
                         <label for="dishIndex">Is the dish gluten free?</label><br>
                         <input type="radio" class="{{name}}" id="{{catName}}{{name}}glutentrue" name="glutenFree" value="true" required disabled>
@@ -66,15 +85,18 @@
                         <input type="radio" class="{{name}}"id="{{catName}}{{name}}glutenfalse" name="glutenFree" value="false" disabled>
                         <label for="false">No</label><br>
                         </div>
-
+                        </div>
 
                         <input type="hidden" id="{{name}}DishAvailable" value="{{available}}">
+
+                        <div class="form-outline mb-4">
                         <div id="available">
                         <label>Is the dish available?</label><br>
                         <input type="radio" class="{{name}}" id="{{catName}}{{name}}availabletrue" name="available" value="true" required disabled>
                         <label for="true">Yes</label>
                         <input type="radio" class="{{name}}"id="{{catName}}{{name}}availablefalse" name="available" value="false" disabled>
                         <label for="false">No</label>
+                        </div>
                         </div>
 
                     </div>
@@ -87,6 +109,8 @@
                 <input type="submit" value="Delete dish" class="btn btn-primary">
             </div>
         </form>
+        </div>
+        </div>
     </body>
         </div>
             <footer>

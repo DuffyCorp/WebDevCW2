@@ -225,7 +225,7 @@ ul.CTAs a {
 }
 
 .bodyContent {
-  min-height: 100vh;
+  min-height: 50vh;
   padding: 40px;
 }
 
@@ -446,11 +446,32 @@ a.fillCard {
   margin: 10px;
 }
 
+.login{
+  text-align: center;
+}
+
+.AdminForm{
+  background-color: white;
+  padding: 30px;
+  text-align: center;
+  width: 33%;
+  margin: 0 auto;
+  border-style: solid;
+  border-color: #000;
+  border-width: 1px;
+  border-radius: 50px;
+}
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
+
+  .AdminForm{
+    width: 80%;
+  }
+
 
   .loginButton{
     margin: 0 auto;

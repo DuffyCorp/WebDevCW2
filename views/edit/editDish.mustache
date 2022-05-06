@@ -14,73 +14,92 @@
                 <h1>{{title}}</h1>
             </div>
         </div>
-            <div class = "bodyContent" id="menus">
+            <div class = "bodyContent" id="menus" style="text-align: center">
         <h2>Edit a dish</h2>
+                                                       <div class="login">
+            <div class="AdminForm">
         {{#items}}
         <form method="post" role="form">
-            <div class="form-group">
+          <div class="form-outline mb-4">
                 <label for="CatMenu">Menu name</label>
                 <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" name="selectMenuName" readonly="readonly">
-            </div>
+        </div>
             {{#category}}
                 <div id="{{catName}}Div" style="display: none">
-                    <label for="oldCatName">Catagory name</label>
-                    <input type="text" class="form-control {{catName}}" id="{{catName}}Text" value="{{catName}}" name="dishCategory" readonly="readonly" disabled>
-                    <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
-
+                    <div class="form-outline mb-4">
+                        <label for="oldCatName">Catagory name</label>
+                        <input type="text" class="form-control {{catName}}" id="{{catName}}Text" value="{{catName}}" name="dishCategory" readonly="readonly" disabled>
+                        <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
+                    </div>
 
                 {{#dishes}}
                     <div id="{{name}}Div" style="display: none">
-                        <label for="dishIndex">Dish name</label>
-                        <input type="text" class="form-control {{name}}" name="dishName" value="{{name}}" disabled >
-                        <input type="hidden" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled>
+                        <div class="form-outline mb-4">
+                            <label for="dishIndex">Dish name</label>
+                            <input type="text" class="form-control {{name}}" name="dishName" value="{{name}}" disabled >
+                            <input type="hidden" name="dishIndex" id="{{name}}Hidden" class ="dishes" disabled>
+                        </div>
 
-                        <label for="dishIndex">Dish price</label>
-                        <input type="text" class="form-control {{name}}" name="dishPrice" value="{{price}}" disabled >
+                        <div class="form-outline mb-4">
+                            <label for="dishIndex">Dish price</label>
+                            <input type="text" class="form-control {{name}}" name="dishPrice" value="{{price}}" disabled >
+                        </div>
 
-                        <label for="dishIndex">Dish description</label>
-                        <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled >{{description}}</textarea>
-                        
-                        <label for="show">Does the dish contain allergies?</label>
-                        {{#allergies}}
-                            <input type="checkbox" id="{{catName}}{{name}}show" name="show" checked/>
-                        {{/allergies}}
-                        {{^allergies}}
-                            <input type="checkbox" id="{{catName}}{{name}}show" name="show" />
-                        {{/allergies}}
+                        <div class="form-outline mb-4">
+                            <label for="dishIndex">Dish description</label>
+                            <textarea class="form-control {{name}}" name="dishDescription" style="resize: none"disabled >{{description}}</textarea>
+                        </div>
 
+                        <div class="form-outline mb-4">
+                            <label for="show">Does the dish contain allergies?</label>
+                            {{#allergies}}
+                                <input type="checkbox" id="{{catName}}{{name}}show" name="show" checked/>
+                            {{/allergies}}
+                            {{^allergies}}
+                                <input type="checkbox" id="{{catName}}{{name}}show" name="show" />
+                            {{/allergies}}
+                        </div>
+
+                        <div class="form-outline mb-4">
                         <div class="form-group" id="{{catName}}{{name}}allergies" style="{{^allergies}}display: none{{/allergies}}">
                             <label for="dishPrice">New dish allergens</label>
                             <textarea class="form-control {{name}}" rows="4" id="{{catName}}{{name}}dishAllergies" name="dishAllergies" style="resize:none" disabled>{{allergies}}
                             </textarea>
                         </div>
+                        </div>
 
                         <input type="hidden" id="{{name}}DishVegetarian" value="{{vegetarian}}">
+
+                        <div class="form-outline mb-4">
                         <div id="vegetarian">
                         <label for="dishIndex">Is the dish vegetarian?</label><br>
                         <input type="radio" class="{{name}}" id="{{catName}}{{name}}vegetariantrue" name="vegetarian" value="true" required disabled>
-                        <label for="true">Yes</label>
-                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}vegetarianfalse" name="vegetarian" value="false" disabled>
-                        <label for="false">No</label><br>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}vegetarianfalse" name="vegetarian" value="false" disabled>
+                        <label for="false">No</label><br>
+                        </div>
                         </div>
 
+                        <div class="form-outline mb-4">
                         <input type="hidden" id="{{name}}DishGluten" value="{{glutenFree}}">
                         <div id="gluten">
                         <label for="dishIndex">Is the dish gluten free?</label><br>
                         <input type="radio" class="{{name}}" id="{{catName}}{{name}}glutentrue" name="glutenFree" value="true" required disabled>
-                        <label for="true">Yes</label>
-                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}glutenfalse" name="glutenFree" value="false" disabled>
-                        <label for="false">No</label><br>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}glutenfalse" name="glutenFree" value="false" disabled>
+                        <label for="false">No</label><br>
+                        </div>
                         </div>
 
-
+                        <div class="form-outline mb-4">
                         <input type="hidden" id="{{name}}DishAvailable" value="{{available}}">
                         <div id="available">
                         <label>Is the dish available?</label><br>
                         <input type="radio" class="{{name}}" id="{{catName}}{{name}}availabletrue" name="available" value="true" required disabled>
-                        <label for="true">Yes</label>
-                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}availablefalse" name="available" value="false" disabled>
-                        <label for="false">No</label>
+                        <label for="true">Yes</label>
+                        <input type="radio" class="{{name}}"id="{{catName}}{{name}}availablefalse" name="available" value="false" disabled>
+                        <label for="false">No</label>
+                        </div>
                         </div>
 
                     </div>
@@ -99,6 +118,8 @@
                 <input type="submit" value="Edit dish" class="btn btn-primary">
             </div>
         </form>
+        </div>
+        </div>
     </body>
         </div>
             <footer>
@@ -108,14 +129,9 @@
        <script>
             var category = "{{dishCatName}}"
             var dish = "{{selectDish}}"
-
-
             const checkbox = document.getElementById(category+dish+'show');
-
             const box = document.getElementById(category+dish+'allergies');
-
             const allergies = document.getElementById(category+dish+"dishAllergies");
-
             checkbox.addEventListener('click', function handleClick() {
             if (checkbox.checked) {
                 box.style.display = 'block';
@@ -125,67 +141,46 @@
                 allergies.disabled = true;
             }
             }); 
-
-
         document.getElementById(category).disabled = false;
-
         document.getElementById(category+"Text").disabled = false;
-
         var choices = document.getElementById(category+"Div");
             choices.style.display="";
             
-
         var list = document.getElementsByClassName("categorys");
             for (var i = 0; i < list.length; i++) {
                 list[i].value = (i);
             };
-
        </script>
 
         <script>
             var category = "{{dishCatName}}"
             var dish = "{{selectDish}}"
-
             //document.getElementById(category+"Div").getElementsByClassName(dish).getElementById("available").getElementById(availableStatus).checked = true
     
             var divs = document.getElementById(dish+"Div");
                 divs.style.display=""
-
             var div = document.getElementsByClassName(dish)
-
             var list = document.getElementById(category+"Div").getElementsByClassName("dishes");
                 for (var i = 0; i < list.length; i++) {
                     list[i].value = (i);
                 };
-
             document.getElementById(dish+"Hidden").disabled = false;
-
             var list = document.getElementById(category+"Div").getElementsByClassName(dish);
                 for (var i = 0; i < list.length; i++) {
                     list[i].disabled = false;
                 };
-
             vegetarianStatus = document.getElementById(dish+"DishVegetarian").value;
-
             document.getElementById(category+dish+"vegetarian"+vegetarianStatus).checked=true;
-
             availableStatus = document.getElementById(dish+"DishAvailable").value;
-
             document.getElementById(category+dish+"available"+availableStatus).checked=true;
-
             glutenStatus = document.getElementById(dish+"DishGluten").value;
-
             document.getElementById(category+dish+"gluten"+glutenStatus).checked=true;
-
             availableDiv = document.getElementById("available");
             for (var i = 0; i < availableDiv.length; i++) {
                     availableDiv[i].getElementById(availableStatus).checked = true;
                     console.log(i);
                 };
-
             console.log("Test")
-
             available.getElementById(availableStatus).checked = true;
-
         </script>
 </html>

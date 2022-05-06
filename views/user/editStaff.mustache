@@ -14,22 +14,32 @@
                 <h1>{{title}}</h1>
             </div>
         </div>
-            <div class = "bodyContent" id="menus">
+            <div class = "bodyContent" id="menus" style="text-align: center">
         <h2>Edit a staff member password</h2>
         {{#staff}}
+                                           <div class="login">
+            <div class="AdminForm">
         <form method="post" role="form">
+            <div class="form-outline mb-4">
             <div class="form-group">
                 <label for="newMenuName" id="oldMenuName" name="staffUserName">Old menu name</label>
                 <input type="text" class="form-control" name="staffUserName" value="{{user}}" readonly="readonly">
             </div>
+            </div>
+
+            <div class="form-outline mb-4">
             <div class="form-group">
                 <label for="newMenuName">New user password</label>
-                <input type="password" class="form-control" id="newUserPassword" name="newUserPassword" required autocomplete="off">
+                <input type="password" class="form-control" id="newUserPassword" name="newUserPassword" minlength="8" required autocomplete="off">
             </div>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Edit menu" class="btn btn-primary">
             </div>
         </form>
+        </div>
+        </div>
         {{/staff}}
     </body>
         </div>

@@ -17,30 +17,27 @@
                     </div>
                 </div>
 
-                <div class = "bodyContent" id="menus">
+                <div class = "bodyContent" id="menus" style="text-align: center">
         
                     <h2>Create a new dish</h2>
-                    <form method="post" role="form">
-
-                        <div class="form-group">
-
-                            <label for="selectMenuName">Choose a menu:</label>
+                                               <div class="login">
+            <div class="AdminForm">
+            <form method="post" role="form">
+  <!-- Menu choice -->
+  <div class="form-outline mb-4">
+    <label for="selectMenuName">Choose a menu:</label>
                             <select type="text" class="form-control" name="selectMenuName" id="selectMenuName" required>
                                 <option value="" disabled selected>Select your option</option>
                                 {{#entries}}
                                     <option value="{{menuName}}">{{menuName}}</option>
                                 {{/entries}}
                             </select>
+  </div>
 
-                        </div>
+  <div class="form-outline mb-4">
+  <input type="hidden" id="arrayIndex" name="arrayIndex" value=0>
 
-                        <div class="form-group">
-                            
-                            <input type="hidden" id="arrayIndex" name="arrayIndex" value=0>
-                        
-                            <div>
-                            
-                                <label for="dishCategory">Choose a category:</label> 
+  <label for="dishCategory">Choose a category:</label> 
                                 {{#entries}} 
                                     <select type="text" class="form-control hideable" name="dishCategory" id="{{menuName}}" style="display: none">
                                         <option value="" disabled selected>Select your option</option>
@@ -49,77 +46,64 @@
                                         {{/category}}
                                     </select>
                                 {{/entries}}
+ </div>
 
-                            </div>
 
-                        </div>
-                        
-                        <div class="form-group">
-
-                            <label for="dishName">New dish Name</label>
+  <div class="form-outline mb-4">
+  <label for="dishName">New dish Name</label>
                             <input type="text" class="form-control" id="dishName" name="dishName" placeholder="dishName" required>
+ </div>
 
-                        </div>
 
-                        <div class="form-group">
-
-                            <label for="dishPrice">New dish price</label>
+  <div class="form-outline mb-4">
+  <label for="dishPrice">New dish price</label>
                             <input type="text" class="form-control" id="dishPrice" name="dishPrice" placeholder="Enter a dish price" required>
-                        
-                        </div>
+ </div>
 
-                        <div class="form-group">
-
-                            <label for="dishPrice">New dish description</label>
+  <div class="form-outline mb-4">
+   <label for="dishPrice">New dish description</label>
                             <textarea class="form-control" rows="4" id="dishDescription" name="dishDescription" style="resize:none" required>
                             </textarea>
-                        </div>
+ </div>
 
-                        <label for="show">Does the dish contain allergies?</label>
+  <div class="form-outline mb-4">
+  <label for="show">Does the dish contain allergies?</label>
                         <input type="checkbox" id="show" name="show" />
+ </div>
 
-                        <div class="form-group" id="allergies" style="display: none">
-                            <label for="dishPrice">New dish allergens</label>
+  <div class="form-outline mb-4" id="allergies" style="display: none">
+  <label for="dishPrice">New dish allergens</label>
                             <textarea class="form-control" rows="4" id="dishAllergies" name="dishAllergies" style="resize:none" required>
                             </textarea>
-                        </div>
+ </div>
 
-                        <div class="form-group">
-                    
-                            <label> Is this dish vegetarian?</label><br>
+  <div class="form-outline mb-4">
+  <label> Is this dish vegetarian?</label><br>
                             <input type="radio" id="true" name="vegetarian" value="true" required>
                             <label for="true">Yes</label>
                             <input type="radio" id="false" name="vegetarian" value="false">
                             <label for="false">No</label>
-            
-                        </div>
-            
-                        <div class="form-group">
-                
-                            <label> Is the new dish gluten free?</label><br>
+ </div>
+
+  <div class="form-outline mb-4">
+  <label> Is the new dish gluten free?</label><br>
                             <input type="radio" id="true" name="glutenFree" value="true" required>
                             <label for="true">Yes</label>
                             <input type="radio" id="false" name="glutenFree" value="false">
                             <label for="false">No</label>
-            
-                        </div>
-            
-                        <div class="form-group">
-                            
-                            <label>Is the new dish available?</label><br>
+ </div>
+  <!-- new cat input -->
+  <div class="form-outline mb-4">
+    <label>Is the new dish available?</label><br>
                             <input type="radio" id="true" name="available" value="true" required>
                             <label for="true">Yes</label>
                             <input type="radio" id="false" name="available" value="false">
                             <label for="false">No</label>
-            
-                        </div>
-            
-                        <div class="form-group">
-                            
-                            <input type="submit" value="Add dish" class="btn btn-primary" onclick="getIndex()">
-            
-                        </div>
-                    </form>
+  </div>
+
+  <!-- Submit button -->
+  <input type="submit" value="Add category" class="btn btn-primary">
+</form>
                 </div>
             </div>
     </body>

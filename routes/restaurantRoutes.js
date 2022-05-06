@@ -7,12 +7,6 @@ const {verify} = require('../auth/auth')
 //Show index page
 router.get("/", controller.landing_page);
 
-router.get('/about', controller.about);
-
-router.get('/aboutAdmin', controller.aboutAdmin);
-
-
-
 //Show Menus
 router.get('/menu/:name', controller.show_user_entries);
 router.get('/menu/admin/:name',verify, controller.logged_show_user_entries);
