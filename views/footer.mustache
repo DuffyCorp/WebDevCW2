@@ -1,14 +1,22 @@
 <!-- Footer -->
 
 <div class="footer">
-  <div class="text-center py-3">
+<div class="footerHeader">
+  <div class ="loginButton">
     {{^user}}
             <a id="login" href="/login" class="btn btn-primary">Sign in</a>
         {{/user}}
   </div>
+  <div class="socialMedia">
+         <img alt="Facebook" class="icon zoom" src="/images/facebook.png">
+         <img alt="Instagram" class="icon zoom" src="/images/instagram.png">
+         <img alt="Twitter" class="icon zoom" src="/images/twitter.png">
+  </div>
+
+</div>
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+  <div class="footerCopyright">© 2022 Copyright:
   {{#user}}
     <a href="/LoggedIn"> Jack Duffy</a>
   {{/user}}
@@ -16,7 +24,7 @@
     <a href="/"> Jack Duffy</a>
   {{/user}}
   </div>
-  <!-- Copyright -->
+  </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
