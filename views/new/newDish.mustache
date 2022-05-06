@@ -57,13 +57,12 @@
 
   <div class="form-outline mb-4">
   <label for="dishPrice">New dish price</label>
-                            <input type="text" class="form-control" id="dishPrice" name="dishPrice" placeholder="Enter a dish price" required>
+                            <input type="number" min="0" step=0.01 class="form-control" id="dishPrice" name="dishPrice" placeholder="Enter a dish price" required>
  </div>
 
   <div class="form-outline mb-4">
    <label for="dishPrice">New dish description</label>
-                            <textarea class="form-control" rows="4" id="dishDescription" name="dishDescription" style="resize:none" required>
-                            </textarea>
+                            <textarea class="form-control" rows="4" id="dishDescription" name="dishDescription" style="resize:none" required></textarea>
  </div>
 
   <div class="form-outline mb-4">
@@ -73,8 +72,7 @@
 
   <div class="form-outline mb-4" id="allergies" style="display: none">
   <label for="dishPrice">New dish allergens</label>
-                            <textarea class="form-control" rows="4" id="dishAllergies" name="dishAllergies" style="resize:none" required>
-                            </textarea>
+                            <textarea class="form-control" rows="4" id="dishAllergies" name="dishAllergies" style="resize:none" disabled></textarea>
  </div>
 
   <div class="form-outline mb-4">
@@ -102,7 +100,7 @@
   </div>
 
   <!-- Submit button -->
-  <input type="submit" value="Add category" class="btn btn-primary">
+  <input type="submit" value="Add dish" class="btn btn-primary">
 </form>
                 </div>
             </div>

@@ -86,7 +86,7 @@ exports.post_edit_user = function (req, res) {
     return;
   }
   userDao.editStaff(req.body.staffUserName, req.body.newUserPassword);
-  res.redirect("/admin");
+  res.redirect("/login");
 }
 
 exports.show_delete_user = function (req, res) {
