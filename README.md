@@ -37,18 +37,18 @@ I changed my DB scheme to allow me to create a more dyncamic site and allow me t
 
 ```json
     {
-        menuName: String,
-        category: [
+        "menuName": "String",
+        "category": [
             {
-                catName: String,
-                dishes: [
+                "catName": "String",
+                "dishes": [
                     {
-                        name: String,
-                        price: String,
-                        description: String,
-                        vegetarian: Boolean,
-                        glutenFree: Boolean,
-                        available: Boolean,
+                        "name": "String",
+                        "price": "String",
+                        "description": "String",
+                        "vegetarian": "Boolean",
+                        "glutenFree": "Boolean",
+                        "available": "Boolean",
                     },
                 ]
             }
