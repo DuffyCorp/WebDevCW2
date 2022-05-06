@@ -15,18 +15,43 @@ This project includes the following features
 Test username: admin
 Test password: admin
 
-Link: https://duffy-cw2-restaurant.herokuapp.com/
+Link: <https://duffy-cw2-restaurant.herokuapp.com/>
 
 ## Installation and setup
 
-1. git clone https://github.com/DuffyCorp/WebDevCW2.git
+1. git clone <https://github.com/DuffyCorp/WebDevCW2.git>
 2. npm install
 3. node index
 
 ## Design Changes
 
+### Database
+
+``
+{
+    menuName: String,
+    category: [
+        {
+            catName: String,
+            dishes: [
+                {
+                    name: String,
+                    price: String,
+                    description: String,
+                    vegetarian: Boolean,
+                    glutenFree: Boolean,
+                    available: Boolean,
+                },
+            ]
+        }
+    ]
+
+``
+
+### Website
+
 ## Tests
 
-All tests are done in the WAD2_CW2_Tests.docx folder in the root of the directory
+All tests are done in the TestReport.docx folder in the root of the directory
 
 ## Image Sources
