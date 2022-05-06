@@ -27,26 +27,26 @@ Link: <https://duffy-cw2-restaurant.herokuapp.com/>
 
 ### Database
 
-``
-{
-    menuName: String,
-    category: [
-        {
-            catName: String,
-            dishes: [
-                {
-                    name: String,
-                    price: String,
-                    description: String,
-                    vegetarian: Boolean,
-                    glutenFree: Boolean,
-                    available: Boolean,
-                },
-            ]
-        }
-    ]
-
-``
+```json
+    {
+        menuName: String,
+        category: [
+            {
+                catName: String,
+                dishes: [
+                    {
+                        name: String,
+                        price: String,
+                        description: String,
+                        vegetarian: Boolean,
+                        glutenFree: Boolean,
+                        available: Boolean,
+                    },
+                ]
+            }
+        ]
+    }
+```
 
 ### Website
 
