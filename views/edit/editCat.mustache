@@ -9,46 +9,45 @@
         <div id="content" style="width 100%" class="{{admin}}">
             {{>header}}
 
-        <div class="Hero">
-            <div class="heroText">
-                <h1>{{title}}</h1>
+            <div class="Hero">
+                <div class="heroText">
+                    <h1>{{title}}</h1>
+                </div>
             </div>
-        </div>
+
             <div class = "bodyContent" id="menus" style="text-align: center">
-        <h2>Edit a category</h2>
+                <h2>Edit a category</h2>
 
-        {{#items}}
-                                   <div class="login">
-            <div class="AdminForm">
-            <form method="post" role="form">
-  <!-- Menu choice -->
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form2Example1">Category menu</label>
-    <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" readonly="readonly">
-  </div>
+                {{#items}}
+                    <div class="login">
+                        <div class="AdminForm">
+                            <form method="post" role="form">
 
-    {{#category}}
-    <div class="{{catName}}" style="display: none">
-        <label for="oldCatName">Old category name</label>
-        <input type="text" class="form-control" value="{{catName}}" readonly="readonly" disabled>
-        <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
-    </div>
-    {{/category}}
-    {{/items}}
-  <!-- new cat input -->
-  <div class="form-outline mb-4">
-    <label for="newCatName">New category name:</label>
-                <input type="text" class="form-control" id="newCatName" name="newCatName" placeholder="Category name" required>
-  </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example1">Category menu</label>
+                                    <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" readonly="readonly">
+                                </div>
 
-  <input type = hidden name="CatMenu" value="{{catMenu}}">
+                                {{#category}}
+                                    <div class="{{catName}}" style="display: none">
+                                        <label for="oldCatName">Old category name</label>
+                                        <input type="text" class="form-control" value="{{catName}}" readonly="readonly" disabled>
+                                        <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
+                                    </div>
+                                {{/category}}
+                    {{/items}}
 
-    <input type = hidden name="oldCatName" value="{{selectCatName}}">
+                                <div class="form-outline mb-4">
+                                    <label for="newCatName">New category name:</label>
+                                    <input type="text" class="form-control" id="newCatName" name="newCatName" placeholder="Category name" required>
+                                </div>
 
+                                <input type = hidden name="CatMenu" value="{{catMenu}}">
 
-  <!-- Submit button -->
-  <input type="submit" value="Edit category" class="btn btn-primary">
-</form>
+                                <input type = hidden name="oldCatName" value="{{selectCatName}}">
+
+                                <input type="submit" value="Edit category" class="btn btn-primary">
+                            </form>
     </body>
         </div>
         </div>

@@ -14,38 +14,36 @@
                 <h1>{{title}}</h1>
             </div>
         </div>
-            <div class = "bodyContent" id="menus" style="text-align: center">
-        <h2>Delete a category</h2>
+        <div class = "bodyContent" id="menus" style="text-align: center">
+            <h2>Delete a category</h2>
                 {{#items}}
-                                   <div class="login">
-            <div class="AdminForm">
-            <form method="post" role="form">
-  <!-- Menu choice -->
-  <div class="form-outline mb-4">
-    <label for="CatMenu">Category menu</label>
-    <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" readonly="readonly">
-  </div>
+                    <div class="login">
+                        <div class="AdminForm">
+                            <form method="post" role="form">
 
-    {{#category}}
-    <div class="{{catName}}" style="display: none">
-        <label for="oldCatName">Category name</label>
-        <input type="text" class="form-control" value="{{catName}}" readonly="readonly" disabled>
-        <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
-    </div>
-    {{/category}}
-    {{/items}}
+                                <div class="form-outline mb-4">
+                                    <label for="CatMenu">Category menu</label>
+                                    <input type="text" id="CatMenu" class="form-control" value="{{menuName}}" readonly="readonly">
+                                </div>
 
- <input type = hidden name="CatMenu" value="{{catMenu}}">
+                                {{#category}}
+                                    <div class="{{catName}}" style="display: none">
+                                        <label for="oldCatName">Category name</label>
+                                        <input type="text" class="form-control" value="{{catName}}" readonly="readonly" disabled>
+                                        <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
+                                    </div>
+                                {{/category}}
+                {{/items}}
 
-            <input type = hidden name="CatName" value="{{selectCatName}}">
+                                <input type = hidden name="CatMenu" value="{{catMenu}}">
 
+                                <input type = hidden name="CatName" value="{{selectCatName}}">
 
-  <!-- Submit button -->
-  <input type="submit" value="Delete category" class="btn btn-primary">
-</form>
-    </body>
-        </div>
-        </div>
+                                <input type="submit" value="Delete category" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </body>
         </div>
             <footer>
         {{>footer}}

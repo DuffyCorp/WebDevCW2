@@ -15,25 +15,25 @@
             </div>
         </div>
             <div class = "bodyContent" id="menus" style="text-align: center">
-        <h2>Delete a menu</h2>
-        {{#items}}
-        <div class="login">
-            <div class="AdminForm">
-            <form method="post" role="form">
-  <!-- Old menu -->
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form2Example1">Menu name</label>
-    <input type="text" class="form-control" value="{{menuName}}" disabled>
-    <input type="hidden" id="MenuName" name="MenuName" value="{{menuName}}">
-  </div>
+                <h2>Delete a menu</h2>
+                {{#items}}
+                    <div class="login">
+                        <div class="AdminForm">
+                            <form method="post" role="form">
 
-  <!-- Submit button -->
-  <input type="submit" value="Delete menu" class="btn btn-primary">
-</form>
-        {{/items}}
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example1">Menu name</label>
+                                    <input type="text" class="form-control" value="{{menuName}}" disabled>
+                                    <input type="hidden" id="MenuName" name="MenuName" value="{{menuName}}">
+                                </div>
+
+
+                                <input type="submit" value="Delete menu" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                {{/items}}
     </body>
-        </div>
-        </div>
         </div>
             <footer>
         {{>footer}}

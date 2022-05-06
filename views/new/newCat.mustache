@@ -1,50 +1,50 @@
 <html>
     <body>
-     <div class="wrapper">
+        <div class="wrapper">
 
-        {{#user}}
-            {{>sidebar}}
-        {{/user}}
-        <!-- Page Content  -->
-        <div id="content" style="width 100%" class="{{admin}}">
-            {{>header}}
+            {{#user}}
+                {{>sidebar}}
+            {{/user}}
+            <!-- Page Content  -->
+            <div id="content" style="width 100%" class="{{admin}}">
+                {{>header}}
 
-        <div class="Hero">
-            <div class="heroText">
-                <h1>{{title}}</h1>
-            </div>
-        </div>
-            <div class = "bodyContent" id="menus" style="text-align: center">
-        <h2>Create a new category</h2>
-                           <div class="login">
-            <div class="AdminForm">
-            <form method="post" role="form">
-  <!-- Menu choice -->
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form2Example1">Choose menu</label>
-    <select type="text" class="form-control" name="menuName" id="menuName" required>
-    <option value="" disabled selected>Select your option</option>
-        {{#entries}}
-            <option value="{{menuName}}">{{menuName}}</option>
-        {{/entries}}
-    </select>
-  </div>
+                <div class="Hero">
+                    <div class="heroText">
+                        <h1>{{title}}</h1>
+                    </div>
+                </div>
 
-  <!-- new cat input -->
-  <div class="form-outline mb-4">
-    <label for="newCatName">New category name:</label>
-                <input type="text" class="form-control" id="newCatName" name="newCatName" placeholder="Category name" required>
-  </div>
+                <div class = "bodyContent" id="menus" style="text-align: center">
 
-  <!-- Submit button -->
-  <input type="submit" value="Add category" class="btn btn-primary">
-</form>
+                    <h2>Create a new category</h2>
+
+                    <div class="login">
+                        <div class="AdminForm">
+                            <form method="post" role="form">
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example1">Choose menu</label>
+                                    <select type="text" class="form-control" name="menuName" id="menuName" required>
+                                        <option value="" disabled selected>Select your option</option>
+                                        {{#entries}}
+                                            <option value="{{menuName}}">{{menuName}}</option>
+                                        {{/entries}}
+                                    </select>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label for="newCatName">New category name:</label>
+                                    <input type="text" class="form-control" id="newCatName" name="newCatName" placeholder="Category name" required>
+                                </div>
+
+                                <input type="submit" value="Add category" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
     </body>
-        </div>
-        </div>
-        </div>
-            <footer>
+    <footer>
         {{>footer}}
     </footer>
-       <script src="/js/admin.js"></script>
+    <script src="/js/admin.js"></script>
 </html>
