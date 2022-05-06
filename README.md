@@ -19,9 +19,9 @@ Link: <https://duffy-cw2-restaurant.herokuapp.com/>
 
 ## Installation and setup
 
-1. git clone <https://github.com/DuffyCorp/WebDevCW2.git>
-2. npm install
-3. node index
+1.  ```bash git clone <https://github.com/DuffyCorp/WebDevCW2.git> ```
+2.  ```bash npm install ```
+3.  ```bash node index ```
 
 ## Design Changes
 
