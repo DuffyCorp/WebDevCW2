@@ -1,6 +1,7 @@
 # WebDevCW2
 
 ## Features
+
 This project includes the following features
 
 1. the ability to add, edit and delete Users
@@ -9,7 +10,8 @@ This project includes the following features
 4. the ability to add, edit and delete Dishes
 5. A dynamic nav bar and home page to show new menus
 
-##Live Demo
+## Live Demo
+
 Test username: admin
 Test password: admin
 
@@ -21,9 +23,10 @@ Link: https://duffy-cw2-restaurant.herokuapp.com/
 2. npm install
 3. node index
 
-##Design Changes
+## Design Changes
 
-##Tests
+## Tests
+
 All tests are done in the WAD2_CW2_Tests.docx folder in the root of the directory
 
-##Image Sources
+## Image Sources
