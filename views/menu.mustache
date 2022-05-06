@@ -57,11 +57,17 @@
                                     </div>
                             <br>
                             {{/dishes}}
+                            {{^dishes}}
+                                <p>No categorys yet</p>
+                            {{/dishes}}
                         </div>
+                        {{/category}}
+                        {{^category}}
+                            <p>No categorys yet</p>
                         {{/category}}
                     {{/menus}}
                     {{^menus}}
-                        No entries yet.
+                        No menus yet.
                     {{/menus}}
                 </body>
             </div>

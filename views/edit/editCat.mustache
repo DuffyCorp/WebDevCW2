@@ -35,7 +35,6 @@
                                         <input type="hidden" name="catIndex" id="{{catName}}" class ="categorys" disabled>
                                     </div>
                                 {{/category}}
-                    {{/items}}
 
                                 <div class="form-outline mb-4">
                                     <label for="newCatName">New category name:</label>
@@ -48,6 +47,10 @@
 
                                 <input type="submit" value="Edit category" class="btn btn-primary">
                             </form>
+                            {{/items}}
+                            {{^items}}
+                                <p>No category was chosen</p>
+                            {{/items}}
     </body>
         </div>
         </div>

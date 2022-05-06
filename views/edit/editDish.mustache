@@ -107,6 +107,9 @@
                 </div>
             {{/category}}
         {{/items}}
+        {{^items}}
+            <p>No item was chosen</p>
+        {{/items}}
 
             <input type = hidden name="CatMenu" value="{{dishMenu}}">
 

@@ -29,6 +29,9 @@
                                         {{#entries}}
                                             <option value="{{menuName}}">{{menuName}}</option>
                                         {{/entries}}
+                                        {{^entries}}
+                                        <option disabled>No menus created yet</option>
+                                        {{/entries}}
                                     </select>
                                 </div>
 

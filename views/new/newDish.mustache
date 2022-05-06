@@ -30,6 +30,9 @@
                                         {{#entries}}
                                             <option value="{{menuName}}">{{menuName}}</option>
                                         {{/entries}}
+                                        {{^entries}}
+                                            <option disabled>No menus created yet</option>
+                                        {{/entries}}
                                     </select>
                                 </div>
 
@@ -42,6 +45,9 @@
                                             <option value="" disabled selected>Select your option</option>
                                             {{#category}}
                                                 <option class ="input" value="{{catName}}">{{catName}}</option>
+                                            {{/category}}
+                                            {{^category}}
+                                                <option disabled>No categorys created yet</option>
                                             {{/category}}
                                         </select>
                                     {{/entries}}

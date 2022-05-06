@@ -41,6 +41,13 @@
                     <td><a href="/deleteMenu/{{menuName}}">delete</a></td>
                 </tr>
             {{/entries}}
+            {{^entries}}
+                <tr>
+                    <td scope="row">No menus</td>
+                    <td><a href="#">No menus</a></td>
+                    <td><a href="#">No menus</a></td>
+                </tr>
+            {{/entries}}
         </tbody>
     </table>
 </div>
@@ -72,6 +79,14 @@
         <td><a href="/editCat/{{menuName}}/{{catName}}">edit</a></td>
         <td><a href="/deleteCat/{{menuName}}/{{catName}}">delete</a></td>
     </tr>
+          {{/category}}
+          {{^category}}
+            <tr>
+                <td scope="row">No categorys</td>
+                <td>{{menuName}}</td>
+                <td><a href="#">No categorys</a></td>
+                <td><a href="#">No categorys</a></td>
+            </tr>
           {{/category}}
     {{/entries}}
   </tbody>
@@ -109,6 +124,16 @@
         <td><a href="/deleteDish/{{menuName}}/{{catName}}/{{name}}">delete</a></td>
     </tr>
     {{/dishes}}
+    {{^dishes}}
+    <tr>
+        <td scope="row">no dishes</td>
+        <td class="hideNav">no dishes</td>
+        <td class="hideNav">no dishes</td>
+        <td class="hideNav">no dishes</td>
+        <td><a href="#">no dishes</a></td>
+        <td><a href="#">no dishes</a></td>
+    </tr>
+    {{/dishes}}
     {{/category}}
     {{/entries}}
   </tbody>
@@ -138,6 +163,13 @@
         <td scope="row">{{user}}</td>
         <td><a href="/editStaff/{{user}}">edit</a></td>
         <td><a href="/deleteStaff/{{user}}">delete</a></td>
+    </tr>
+    {{/staff}}
+    {{^staff}}
+    <tr>
+        <td scope="row">No users</td>
+        <td><a href="#">No users</a></td>
+        <td><a href="#">No users</a></td>
     </tr>
     {{/staff}}
   </tbody>

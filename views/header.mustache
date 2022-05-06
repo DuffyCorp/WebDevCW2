@@ -35,6 +35,11 @@
                             <a class="nav-link" href="/menu/{{menuName}}">{{menuName}}</a>
                         </li>
                     {{/entries}}
+                    {{^entries}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">No menus</a>
+                        </li>
+                    {{/entries}}
                 {{/user}}
                 {{#user}}
                     <li class="nav-item {{home}}">
@@ -43,6 +48,11 @@
                     {{#entries}}
                         <li class="nav-item {{menuName}}">
                             <a class="nav-link" href="/menu/admin/{{menuName}}">{{menuName}}</a>
+                        </li>
+                    {{/entries}}
+                    {{^entries}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">No menus</a>
                         </li>
                     {{/entries}}
                     <li class="nav-item {{admin}}">
